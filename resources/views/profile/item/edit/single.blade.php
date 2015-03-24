@@ -14,7 +14,7 @@
                        value="{{ $value }}" {{ isset($disabled) ? 'disabled' : '' }}>
             </div>
             @if (isset($hak_lihat))
-                @include('profile.hak_lihat', ['id' => 'hak_lihat_' . $id, 'value' => $hak_lihat])
+                @include('profile.item.edit.hak_lihat', ['id' => 'hak_lihat_' . $id, 'value' => $hak_lihat])
             @endif
         </div>
     </div>

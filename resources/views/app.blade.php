@@ -10,6 +10,8 @@
     <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/css/aksata.css') }}" rel="stylesheet">
+
+    <!-- Page-Specific Stylesheets -->
     @yield('stylesheet')
 
     <!--[if lt IE 9]>
@@ -20,33 +22,28 @@
 </head>
 
 <body>
+<div class="wrapper">
+    @include('app.navbar')
 
-@include('app.navbar')
+    <div class="container">
+        <div class="row">
 
-<!-- container -->
-<div class="container">
+            <div class="col-md-2">
+                @include('app.left_sidebar')
+            </div>
 
-    <div class="row">
+            <div class="col-md-8">
+                @yield('content')
+            </div>
 
-        <!-- left sidebar -->
-        <div class="col-md-2">
-            @include('app.left_sidebar')
+            <div class="col-md-2">
+                @include('app.right_sidebar')
+            </div>
+
         </div>
-        <!-- /left sidebar -->
-
-        <!-- main -->
-        <div class="col-md-8">
-            @yield('content')
-        </div>
-        <!-- /main -->
-
-        <!-- right sidebar -->
-        <div class="col-md-2">
-            @include('app.right_sidebar')
-        </div>
-        <!-- /right sidebar -->
-
     </div>
+
+    <div class="footer_push"></div>
 </div>
 
 @include('app.footer')
@@ -54,6 +51,8 @@
 <!-- Scripts -->
 <script src="{{ asset('/assets/js/jquery-1.11.2.min.js') }}"></script>
 <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+
+<!-- Page-Specific Scripts -->
 @yield('script')
 </body>
 

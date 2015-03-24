@@ -2,9 +2,11 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-toggle"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">Aksata</a>
+            <a class="navbar-brand" href="{{ url('/') }}" style="margin-right: 8px">Aksata</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -23,12 +25,17 @@
                                 <a href="{{ url('/profile') }}"><i class="fa fa-user"></i> My Profile</a>
                             </li>
                             <li>
+                                <a href="{{ url('/settings') }}"><i class="fa fa-cog"></i> Account Settings</a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/auth/logout') }}"><i class="fa fa-lock"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
                 @endif
             </ul>
+
+            @include('search.form', ['navbar' => true])
         </div>
     </div>
 </div>

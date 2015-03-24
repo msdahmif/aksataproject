@@ -146,4 +146,13 @@ $(document).ready(function() {
 	$('body').on('click', '#_simpan_button', function() {
 		
 	});
+
+    ////////////////////
+    // image select
+    ////////////////////
+    $('#foto').click(function(){
+        alert("halo");
+        $('input[name="foto"]').click();
+    });
+
 });

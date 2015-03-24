@@ -19,14 +19,14 @@
                    id="{{ $id . '_geolocation' }}" placeholder="(Latitude, Longitude)"
                    value="{{ $value->geolocation or '' }}">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-info" title="Buka Google Maps"
+												<button type="button" class="btn btn-info gmaps_button" title="Buka Google Maps"
                                                         data-toggle="modal" data-target="#gmaps_modal">
-                                                    <span class="glyphicon glyphicon-map-marker"/>
+                                                    <i class="fa fa-map-marker"></i>
                                                 </button>
 											</span>
         </div>
     </div>
     @if (isset($hak_lihat))
-        @include('profile.hak_lihat', ['id' => 'hak_lihat_' . $id, 'value' => $hak_lihat])
+        @include('profile.item.edit.hak_lihat', ['id' => 'hak_lihat_' . $id, 'value' => $hak_lihat])
     @endif
 </div>

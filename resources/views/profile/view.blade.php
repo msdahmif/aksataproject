@@ -2,8 +2,6 @@
 
 @section('content')
 
-    <?php $hidden_field = '<span class="label label-default">Hidden</span>'; ?>
-
     <!-- Nama Lengkap -->
     <h2>{{ $profile->nama_lengkap }}</h2>
 
@@ -13,7 +11,9 @@
 
         <!-- Photo -->
         <div class="col-md-3">
-            @if ($profile->media_sosial[0])
+            @if ($profile->foto_url != 'assets/images/anonim.png')
+                <img src="{{ asset($profile->foto_url) }}" width=100%>
+            @elseif (count($profile->media_sosial) && $profile->media_sosial[0])
                 <img src="{{ str_replace('facebook', 'graph.facebook', $profile->media_sosial[0]->value) . "/picture?width=150&height=150" }}"
                      width=100%>
             @else
@@ -28,155 +28,28 @@
                 Personal Information
             </legend>
 
-            <div class="row item">
-                <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-user"/>
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Nama Panggilan
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->nama_panggilan !== null)
-                                {{ $profile->nama_panggilan }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Nama Panggilan -->
+            {{--Nama Panggilan--}}
+            @include('profile.item.view.single', ['label' => 'Nama Panggilan', 'value' => $profile->nama_panggilan, 'icon' => '<i class="fa fa-user"></i>'])
 
-            <!-- NIM -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <!-- <span class="glyphicon glyphicon-envelope"/> -->
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            NIM
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->nim !== null)
-                                {{ $profile->nim }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /NIM -->
+            {{--NIM--}}
+            @include('profile.item.view.single', ['label' => 'NIM', 'value' => $profile->nim])
 
-            <!-- Jenis Kelamin -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <!-- <span class="glyphicon glyphicon-envelope"/> -->
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Jenis Kelamin
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->jenis_kelamin !== null)
-                                {{ ucwords($profile->jenis_kelamin) }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Jenis Kelamin -->
+            {{--Jenis Kelamin--}}
+            @include('profile.item.view.single', ['label' => 'Jenis Kelamin', 'value' => ucwords($profile->jenis_kelamin)])
 
-            <!-- Tempat Tanggal Lahir -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <!-- <span class="glyphicon glyphicon-envelope"/> -->
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Tempat, Tanggal Lahir
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->tempat_lahir !== null && $profile->tanggal_lahir !== null)
-                                {{ $profile->tempat_lahir }}, {{ $profile->tanggal_lahir->formatLocalized('%e %B %Y') }}
-                            @elseif ($profile->tempat_lahir !== null)
-                                {{ $profile->tempat_lahir }}
-                            @elseif ($profile->tanggal_lahir !== null)
-                                {{ $profile->tanggal_lahir->formatLocalized('%e %B %Y') }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Tempat Tanggal Lahir -->
+            {{--Tempat, Tanggal Lahir--}}
+            @include('profile.item.view.single', ['label' => 'Tempat, Tanggal Lahir', 'value' => ($profile->tempat_lahir === null && $profile->tanggal_lahir === null) ? null :  ($profile->tempat_lahir === null ? '' : $profile->tempat_lahir) . (($profile->tempat_lahir !== null && $profile->tanggal_lahir !== null) ? ', ' : '') . ($profile->tanggal_lahir === null ? '' : $profile->tanggal_lahir->formatLocalized('%e %B %Y'))])
 
-            <!-- Nomor Telepon -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-earphone"/>
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Nomor Telepon
-                        </div>
-                    </div>
-                    @foreach ($profile->telepon as $nomor)
-                        @if ($nomor !== null)
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    {{ $nomor->label }}
-                                </div>
-                                <div class="col-xs-8 item-value">
-                                    {{ $nomor->value }}
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-            <!-- /Nomor Telepon -->
+            {{--Nomor Telepon--}}
+            @include('profile.item.view.multiple', ['label' => 'Nomor Telepon', 'values' => $profile->telepon, 'icon' => '<i class="fa fa-phone"></i>'])
 
-            <!-- Email -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-envelope"/>
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Email
-                        </div>
-                    </div>
-                    @foreach ($profile->email as $email)
-                        @if ($email !== null)
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    {{ $email->label }}
-                                </div>
-                                <div class="col-xs-8 item-value">
-                                    {{ $email->value }}
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-            <!-- /Email -->
+            {{--Email--}}
+            @include('profile.item.view.multiple', ['label' => 'Email', 'values' => $profile->email, 'icon' => '<i class="fa fa-envelope"></i>'])
 
-            <!-- Alamat -->
+            {{--Alamat--}}
             <div class="row item">
                 <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-map-marker"/>
+                    <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="col-xs-11">
                     <div class="row">
@@ -190,9 +63,10 @@
                         </div>
                         <div class="col-xs-8 item-value">
                             @if ($profile->alamat_bandung !== null)
-                                {{ $profile->alamat_bandung->jalan }}
+                                {{ $profile->alamat_bandung->jalan . ', ' . $profile->alamat_bandung->kota . ', ' . $profile->alamat_bandung->provinsi . ' ' . $profile->alamat_bandung->kodepos }}
+                                <a class="button pull-right show_location" href="#" title="Lihat lokasi" data-position="{{ $profile->alamat_bandung->geolocation }}"><i class="fa fa-lg fa-map-marker"></i></a>
                             @else
-                                {!! $hidden_field !!}
+                                @include('profile.item.view.hidden')
                             @endif
                         </div>
                     </div>
@@ -202,149 +76,55 @@
                         </div>
                         <div class="col-xs-8 item-value">
                             @if ($profile->alamat_asal !== null)
-                                {{ $profile->alamat_asal->jalan }}
+                                {{ $profile->alamat_asal->jalan . ', ' . $profile->alamat_asal->kota . ', ' . $profile->alamat_asal->provinsi . ' ' . $profile->alamat_asal->kodepos }}
+                                <a class="button pull-right show_location" href="#" title="Lihat lokasi" data-position="{{ $profile->alamat_asal->geolocation }}"><i class="fa fa-lg fa-map-marker"></i></a>
                             @else
-                                {!! $hidden_field !!}
+                                @include('profile.item.view.hidden')
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /Alamat -->
+
+            <!-- Google Maps Modal -->
+            <div class="modal fade" id="gmaps_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Location</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="map-canvas" style="width:100%; height: 300px"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Google Maps Modal -->
 
             <legend>
                 Additional Information
             </legend>
 
-            <!-- NIM TPB -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <!-- <span class="glyphicon glyphicon-envelope"/> -->
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            NIM TPB
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->nim_tpb !== null)
-                                {{ $profile->nim_tpb }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /NIM TPB -->
+            {{--NIM TPB--}}
+            @include('profile.item.view.single', ['label' => 'NIM TPB', 'value' => $profile->nim_tpb])
 
-            <!-- Golongan Darah -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-tint"/>
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Golongan Darah
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->golongan_darah !== null)
-                                {{ $profile->golongan_darah }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Golongan Darah -->
+            {{--Golongan Darah--}}
+            @include('profile.item.view.single', ['label' => 'Golongan Darah', 'value' => $profile->golongan_darah, 'icon' => '<i class="fa fa-tint"></i>'])
 
-            <!-- Penyakit -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <!-- <span class="glyphicon glyphicon-envelope"/> -->
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Penyakit
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->penyakit !== null)
-                                {{ $profile->penyakit }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Penyakit -->
+            {{--Penyakit--}}
+            @include('profile.item.view.single', ['label' => 'Penyakit', 'value' => $profile->penyakit, 'icon' => '<i class="fa fa-medkit"></i>'])
 
             <!-- MBTI -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-star"></span>
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            MBTI
-                        </div>
-                        <div class="col-xs-8 item-value">
-                            @if ($profile->mbti !== null)
-                                {{ $profile->mbti }}
-                            @else
-                                {!! $hidden_field !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /MBTI -->
+            @include('profile.item.view.single', ['label' => 'MBTI', 'value' => $profile->mbti, 'icon' => '<i class="fa fa-star"></i>'])
 
-            <!-- Media Sosial -->
-            <div class="row item">
-                <div class="col-xs-1">
-                    <span class="glyphicon glyphicon-thumbs-up"/>
-                </div>
-                <div class="col-xs-11">
-                    <div class="row">
-                        <div class="col-xs-4 item-key">
-                            Media Sosial
-                        </div>
-                    </div>
-                    @foreach ($profile->media_sosial as $media)
-                        @if ($media !== null)
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    {{ $media->label }}
-                                </div>
-                                <div class="col-xs-8 item-value">
-                                    {{ $media->value }}
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-            <!-- /Media Sosial -->
-
-            <!-- Nomor Darurat -->
-            {{--<div class="row item">--}}
-            {{--<div class="col-xs-1">--}}
-            {{--<span class="glyphicon glyphicon-exclamation-sign"/>--}}
-            {{--</div>--}}
-            {{--<div class="col-xs-11">--}}
-            {{--<div class="row">--}}
-            {{--<div class="col-xs-4 item-key">--}}
-            {{--Nomor Darurat--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            <!-- /Nomor Darurat -->
+            {{--Media Sosial--}}
+            @include('profile.item.view.multiple', ['label' => 'Media Sosial', 'values' => $profile->media_sosial, 'icon' => '<i class="fa fa-facebook-official"></i>'])
 
             <hr>
 
@@ -372,7 +152,45 @@
 
         </div>
         <!--/Profile -->
-
     </div>
 
+@endsection
+
+@section('script')
+    <script>$(function () {$('[data-toggle="tooltip"]').tooltip()})</script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF2S-uLxntyh6PxPPSp20gup2tl3DnoWg"></script>
+    <script type="text/javascript">
+        $(function() {
+            // initializing the map
+            var map, marker;
+            google.maps.event.addDomListener(window, 'load', function() {
+                map = new google.maps.Map(document.getElementById('map-canvas'), {
+                    center: { lat: 0, lng: 0},
+                    zoom: 8
+                });
+                marker = new google.maps.Marker({
+                    map: map
+                });
+            });
+
+            $('.show_location').click(function() {
+                var data = $(this).data('position').replace(/[()\s ]+/g, '').split(',');
+                var lat = 0, lng = 0;
+                if (data.length == 2) {
+                    lat = parseFloat(data[0]);
+                    lng = parseFloat(data[1]);
+                }
+                marker.setPosition({lat: lat, lng: lng});
+                $('#gmaps_modal').modal('show');
+
+                return false;
+            });
+
+            $('#gmaps_modal').on('shown.bs.modal', function () {
+                google.maps.event.trigger(map, 'resize');
+                map.panTo(marker.position);
+            });
+        });
+    </script>
 @endsection

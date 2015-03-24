@@ -1,857 +1,146 @@
+
 <!DOCTYPE html>
-<html lang="en">
-		<head>
-				<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-				<meta charset="utf-8">
-				<title>Aksata 2.0 Profile Page</title>
-				<meta name="generator" content="Bootply" />
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-				<link href="assets/css/bootstrap.css" rel="stylesheet">
-				<link href="assets/css/font-awesome.min.css" rel="stylesheet">
-				<link href="assets/css/bootstrap-datepicker.css" rel="stylesheet">
-				<!--[if lt IE 9]>
-						<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-				<![endif]-->
-				<link href="assets/css/aksata.css" rel="stylesheet">
-		</head>
-		<body style="padding-top: 70px">
-<!-- Header -->
-<div id="top-nav" class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-toggle"></span>
-			</button>
-			<a class="navbar-brand" href="#">Aksata 2.0</a>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				
-				<li class="dropdown">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-						<i class="glyphicon glyphicon-king"></i> Ahmad Zaky <span class="caret"></span></a>
-					<ul id="g-account-menu" class="dropdown-menu" role="menu">
-						<li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
-						<li><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div><!-- /container -->
-</div>
-<!-- /Header -->
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+        /*.controls {*/
+            /*margin-top: 16px;*/
+            /*border: 1px solid transparent;*/
+            /*border-radius: 2px 0 0 2px;*/
+            /*box-sizing: border-box;*/
+            /*-moz-box-sizing: border-box;*/
+            /*height: 32px;*/
+            /*outline: none;*/
+            /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);*/
+        /*}*/
 
-<!-- Container -->
-<div class="container">
-	
-	<div class="row">
-		<!-- Left sidebar -->
-		<div class="col-sm-2">
-		</div><!-- /Left sidebar -->
+        /*#pac-input {*/
+            /*background-color: #fff;*/
+            /*font-family: Roboto;*/
+            /*font-size: 15px;*/
+            /*font-weight: 300;*/
+            /*margin-left: 12px;*/
+            /*padding: 0 11px 0 13px;*/
+            /*text-overflow: ellipsis;*/
+            /*width: 400px;*/
+        /*}*/
 
-		<!-- Main -->
-		<div class="col-sm-8">
+        /*#pac-input:focus {*/
+            /*border-color: #4d90fe;*/
+        /*}*/
 
-			<h2>Edit Profil</h2>
-			<hr>
+        /*.pac-container {*/
+            /*font-family: Roboto;*/
+        /*}*/
 
-			<!-- Edit Profile Form -->
-			<form>
-				<div class="row">
+        /*#type-selector {*/
+            /*color: #fff;*/
+            /*background-color: #4d90fe;*/
+            /*padding: 5px 11px 0px 11px;*/
+        /*}*/
 
-					<!-- Profile Picture -->
-					<div class="col-md-3">
-						<img src="assets/images/anonim.png" width=100%>
-						<a href="#">Ganti gambar</a>
-					</div><!--/Profile Picture -->
+        /*#type-selector label {*/
+            /*font-family: Roboto;*/
+            /*font-size: 13px;*/
+            /*font-weight: 300;*/
+        /*}*/
 
-					<div class="col-md-9">
-						<legend>
-							Personal Information
-						</legend>
+    </style>
+    <title>Places search box</title>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script>
+        // This example adds a search box to a map, using the Google Place Autocomplete
+        // feature. People can enter geographical searches. The search box will return a
+        // pick list containing a mix of places and predicted search terms.
 
-						<!-- Nama Lengkap -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-user"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_nama_lengkap">
-											Nama Lengkap
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_nama_lengkap" name="nama_lengkap" value="Ahmad Zaky">
-									</div>
-								</div>
-							</div>
-						</div><!-- /Nama Lengkap -->
+        function initialize() {
 
-						<!-- Nama Panggilan -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<!-- <span class="glyphicon glyphicon-user"/> -->
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_nama_panggilan">
-											Nama Panggilan
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_nama_panggilan" name="nama_panggilan" value="Zaky">
-									</div>
-								</div>
-							</div>
-						</div><!-- /Nama Panggilan -->
-		
-						<!-- NIM Jurusan -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<!-- <span class="glyphicon glyphicon-user"/> -->
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_nim">
-											NIM
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_nim" name="nim" value="13512076">
-									</div>
-								</div>
-							</div>
-						</div><!-- NIM Jurusan -->
+            var markers = [];
+            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+//                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
 
-						<!-- Jenis Kelamin -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<!-- <span class="glyphicon glyphicon-user"/> -->
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_jenis_kelamin">
-											Jenis Kelamin
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<select class="form-control" id="_jenis_kelamin" name="jenis_kelamin">
-											<option value="L">Laki-laki</option>
-											<option value="P">Perempuan</option>
-										</select>
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_jenis_kelamin" id="_hak_akses_jenis_kelamin">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-							</div>
-						</div><!-- /Jenis Kelamin -->
+            var defaultBounds = new google.maps.LatLngBounds(
+                    new google.maps.LatLng(-33.8902, 151.1759),
+                    new google.maps.LatLng(-33.8474, 151.2631));
+            map.fitBounds(defaultBounds);
 
-						<!-- Tempat, Tanggal Lahir -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<!-- <span class="glyphicon glyphicon-user"/> -->
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_tempat_lahir">
-											Tempat, Tanggal lahir
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" placeholder="Tempat" id="_tempat_lahir" name="tempat_lahir" value="Jakarta">
-										<div id="_tanggal_lahir_container">
-											<input type="text" class="form-control" placeholder="Tanggal Lahir" id="_tanggal_lahir" name="tanggal_lahir" value="04/17/1995">
-										</div>
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_ttl" id="_hak_akses_ttl">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-							</div>
-						</div><!-- /Tempat, Tanggal Lahir -->
+            // Create the search box and link it to the UI element.
+            var input = /** @type {HTMLInputElement} */(
+                    document.getElementById('pac-input'));
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-						<!-- Nomor Telepon -->
-						<div class="row item" required>
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-phone"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										Nomor Telepon
-									</div>
-								</div>
-								<!-- Template -->
-								<div class="row subitem" style="display:none">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="phone_label_0" id="_phone_label_0" placeholder="Label">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_phone_number_0" name="phone_number_0" placeholder="Nomor">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_phone_0" id="_hak_akses_phone_0" value="privat">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-lock hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div><!-- /Template -->
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="phone_label_1" id="_phone_label_1" placeholder="Label" value="Mobile">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_phone_number_1" name="phone_number_1" placeholder="Nomor" value="+62 817 000 9891">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_phone_1" id="_hak_akses_phone_1">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-									<!-- Delete Button -->
-									<!-- <button class="close remove_button" type="button">&times;</button> -->
-								</div>
-								<!-- Add Button -->
-								<div class="row">
-									<div class="col-xs-10">
-										<button type="button" class="btn btn-info pull-left add_button">
-											Tambah
-										</button>
-									</div>
-								</div><!-- /Add Button -->
-							</div>
-						</div><!-- /Nomor Telepon -->
+            var searchBox = new google.maps.places.SearchBox(
+                    /** @type {HTMLInputElement} */(input));
 
-						<!-- E-mail -->
-						<div class="row item" required>
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-envelope-o"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										Email
-									</div>
-								</div>
-								<!-- Template -->
-								<div class="row subitem" style="display:none">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="email_label_0" id="_email_label_0" placeholder="Label">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="email_0" id="_email_0" placeholder="Email">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_email_0" id="_hak_akses_email_0" value="privat">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-lock hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div><!-- /Template -->
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="email_label_1" id="_email_label_1" placeholder="Label" value="Primary">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="email_1" id="_email_1" placeholder="Email" value="ahmadzaky003@gmail.com">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_email_1" id="_hak_akses_email_1">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="email_label_2" id="_email_label_2" placeholder="Label" value="Students Mail">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="email_2" id="_email_2" placeholder="Email" value="13512076@std.stei.itb.ac.id">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_email_2" id="_hak_akses_email_2">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-								<!-- Add Button -->
-								<div class="row">
-									<div class="col-xs-10">
-										<button type="button" class="btn btn-info pull-left add_button">
-											Tambah
-										</button>
-									</div>
-								</div><!-- /Add Button -->
-							</div>
-						</div><!-- /Email -->
+            // [START region_getplaces]
+            // Listen for the event fired when the user selects an item from the
+            // pick list. Retrieve the matching places for that item.
+            google.maps.event.addListener(searchBox, 'places_changed', function() {
+                var places = searchBox.getPlaces();
 
-						<!-- Alamat -->
-						<div class="row item" required>
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-map-marker"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										Alamat
-									</div>
-								</div>
-								<!-- Template -->
-								<div class="row subitem" style="display:none">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="alamat_label_0" id="_alamat_label_0" placeholder="Label">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="alamat_jalan_0" id="_alamat_jalan_0" placeholder="Alamat">
-										<input type="text" class="form-control" name="alamat_kota_0" id="_alamat_kota_0" placeholder="Kota">
-										<input type="text" class="form-control" name="alamat_provinsi_0" id="_alamat_provinsi_0" placeholder="Provinsi">
-										<input type="text" class="form-control" name="alamat_kodepos_0" id="_alamat_kodepos_0" placeholder="Kode Pos">
-										<div class="input-group">
-											<input type="text" class="form-control" name="alamat_geolocation_0" id="_alamat_geolocation_0" placeholder="(Latitude, Longitude)">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-info" title="Buka Google Maps" data-toggle="modal" data-target="#gmaps_modal">
-													<span class="glyphicon glyphicon-map-marker"/>
-												</button>
-											</span>
-										</div>
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_alamat_0" id="_hak_akses_alamat_0" value="privat">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-lock hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div><!-- /Template -->
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="alamat_label_1" id="_alamat_label_1" placeholder="Label" value="Alamat Kosan">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="alamat_jalan_1" id="_alamat_jalan_1" placeholder="Alamat" value="Jl. Cisitu Lama III no. 24a/154c">
-										<input type="text" class="form-control" name="alamat_kota_1" id="_alamat_kota_1" placeholder="Kota" value="Bandung">
-										<input type="text" class="form-control" name="alamat_provinsi_1" id="_alamat_provinsi_1" placeholder="Provinsi" value="Jawa Barat">
-										<input type="text" class="form-control" name="alamat_kodepos_1" id="_alamat_kodepos_1" placeholder="Kode Pos" value="40135">
-										<div class="input-group">
-											<input type="text" class="form-control" name="alamat_geolocation_1" id="_alamat_geolocation_1" placeholder="(Latitude, Longitude)"
-											value="(-6.881582908727207, 107.61207578253243)">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-info" title="Buka Google Maps" data-toggle="modal" data-target="#gmaps_modal">
-													<span class="glyphicon glyphicon-map-marker"/>
-												</button>
-											</span>
-										</div>
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_alamat_2" id="_hak_akses_alamat_1">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-								<!-- Add Button -->
-								<div class="row">
-									<div class="col-xs-10">
-										<button type="button" class="btn btn-info pull-left add_button">
-											Tambah
-										</button>
-									</div>
-								</div><!-- /Add Button -->
-							</div>
-						</div><!-- /Alamat -->
+                if (places.length == 0) {
+                    return;
+                }
+                for (var i = 0, marker; marker = markers[i]; i++) {
+                    marker.setMap(null);
+                }
 
-						<!-- Google Maps Modal -->
-						<div class="modal fade" id="gmaps_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="myModalLabel">Location Picker</h4>
-									</div>
-									<div class="modal-body">
-										<div id="geo_1" style="width:100%; height: 300px"></div>
-										<input type="hidden" id="geo_lat_1">
-										<input type="hidden" id="geo_long_1">
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
-									</div>
-								</div>
-							</div>
-						</div><!-- /Google Maps Modal -->
+                // For each place, get the icon, place name, and location.
+                markers = [];
+                var bounds = new google.maps.LatLngBounds();
+                for (var i = 0, place; place = places[i]; i++) {
+                    var image = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
 
-						<legend>
-							Additional Information
-						</legend>
+                    // Create a marker for each place.
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        icon: image,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
 
-						<!-- NIM TPB -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<!-- <span class="glyphicon glyphicon-user"/> -->
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_nim_tpb">
-											NIM TPB
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_nim_tpb" name="nim_tpb" value="16512398">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_nim_tpb" id="_hak_akses_nim_tpb">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-							</div>
-						</div><!-- /NIM TPB -->
+                    markers.push(marker);
 
-						<!-- Golongan Darah -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-tint"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_gol_darah">
-											Golongan Darah
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<select class="form-control" id="_gol_darah" name="gol_darah">
-											<option value="A">A</option>
-											<option value="B">B</option>
-											<option value="AB">AB</option>
-											<option value="O" selected>O</option>
-										</select>
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_gol_darah" id="_hak_akses_gol_darah">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-							</div>
-						</div><!-- /Golongan Darah -->
+                    bounds.extend(place.geometry.location);
+                }
 
-						<!-- Penyakit -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-medkit"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_penyakit">
-											Penyakit
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" id="_penyakit" name="penyakit" value="Tidak ada">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_penyakit" id="_hak_akses_penyakit">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-							</div>
-						</div><!-- /Penyakit -->
+                map.fitBounds(bounds);
+            });
+            // [END region_getplaces]
 
-						<!-- MBTI -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-star"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										<label for="_mbti">
-											MBTI
-										</label>
-									</div>
-									<div class="col-xs-6 item-value">
-										<div class="input-group">
-											<input type="text" class="form-control" name="mbti" id="_mbti" value="ISTP">
-											<span class="input-group-btn">
-												<a class="btn btn-info" href="//www.google.com/search?q=mbti+test" target="_blank" title="Ambil Tes MBTI">
-													<span class="glyphicon glyphicon-check"/>
-												</a>
-											</span>
-										</div>
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_mbti" id="_hak_akses_mbti">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-							</div>
-						</div><!-- /MBTI -->
+            // Bias the SearchBox results towards places that are within the bounds of the
+            // current map's viewport.
+//            google.maps.event.addListener(map, 'bounds_changed', function() {
+//                var bounds = map.getBounds();
+//                searchBox.setBounds(bounds);
+//            });
+        }
 
-						<!-- Social Media -->
-						<div class="row item">
-							<div class="col-xs-1 item-icon">
-								<i class="fa fa-lg fa-facebook-official"></i>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										Media Sosial
-									</div>
-								</div>
-								<!-- Template -->
-								<div class="row subitem" style="display:none">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="social_media_label_0" id="_social_media_label_0" placeholder="Label">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="social_media_0" id="_social_media_0" placeholder="Media Sosial (link/id)">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_social_media_0" id="_hak_akses_social_media_0" value="privat">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-lock hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div><!-- /Template -->
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="social_media_label_1" id="_social_media_label_1" placeholder="Label" value="Facebook">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="social_media_1" id="_social_media_1" placeholder="Media Sosial (link/id)" value="http://facebook.com/azaky003">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_social_media_1" id="_hak_akses_social_media_1">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="social_media_label_2" id="_social_media_label_2" placeholder="Label" value="Github">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="social_media_2" id="_social_media_2" placeholder="Media Sosial (link/id)" value="http://github.com/azaky">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_social_media_2" id="_hak_akses_social_media_2">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-								<!-- Add Button -->
-								<div class="row">
-									<div class="col-xs-10">
-										<button type="button" class="btn btn-info pull-left add_button">
-											Tambah
-										</button>
-									</div>
-								</div><!-- /Add Button -->
-							</div>
-						</div><!-- /Social Media -->
+        google.maps.event.addDomListener(window, 'load', initialize);
 
-						<!-- Emergency Contact -->
-						<div class="row item" required>
-							<div class="col-xs-1 item-icon">
-								<span class="glyphicon glyphicon-exclamation-sign"/>
-							</div>
-							<div class="col-xs-11">
-								<div class="row">
-									<div class="col-xs-4 item-key">
-										Nomor Darurat
-									</div>
-								</div>
-								<!-- Template -->
-								<div class="row subitem" style="display:none">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="emergency_label_0" placeholder="Label">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="emergency_0" placeholder="Nomor Darurat">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_emergency_0" value="privat">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-lock hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div><!-- /Template -->
-								<div class="row subitem">
-									<div class="col-xs-4 item-key">
-										<input type="text" class="form-control" name="emergency_label_1" placeholder="Label" value="Nomor Kakak">
-									</div>
-									<div class="col-xs-6 item-value">
-										<input type="text" class="form-control" name="emergency_label_1" placeholder="Nomor Darurat" value="+62 856 9336 6309">
-									</div>
-									<!-- Hak Akses -->
-									<div class="col-xs-2 hak_akses_group">
-										<input type="hidden" name="hak_akses_social_media_2" id="_hak_akses_social_media_2">
-										<div class="btn-group">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<i class="fa fa-globe hak_akses_icon"></i>
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#" class="hak_akses" data-akses="publik"><i class="fa fa-globe"></i> Publik</a></li>
-												<li><a href="#" class="hak_akses" data-akses="kalangan"><i class="fa fa-users"></i> HMIF</a></li>
-												<li><a href="#" class="hak_akses" data-akses="privat"><i class="fa fa-lock"></i> Hanya saya</a></li>
-											</ul>
-										</div>
-									</div><!-- /Hak Akses -->
-								</div>
-								<!-- Add Button -->
-								<div class="row">
-									<div class="col-xs-10">
-										<button type="button" class="btn btn-info pull-left add_button">
-											Tambah
-										</button>
-									</div>
-								</div><!-- /Add Button -->
-							</div>
-						</div><!-- /Emergency Contact -->
-
-						<hr>
-
-						<!-- Buttons -->
-						<div class="row">
-							<div class="col-xs-6">
-								<a class="btn btn-primary col-xs-12" href="profile.html">
-									Simpan
-								</a>
-							</div>
-							<div class="col-xs-6">
-								<a class="btn btn-danger col-xs-12" id="_batal_button" href="profile.html">
-									Batal
-								</a>
-							</div>
-						</div><!-- /Buttons -->
-
-						<hr>
-
-					</div><!--/col-span-6-->
-				</div><!--/row-->
-			</div><!--/col-span-9-->
-		</form><!-- /Edit Profile Form -->
-	</div><!-- /Main -->
-
-</div><!--/container-->
-
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
-
-	
-<!-- script references -->
-<!-- Mandatory! JQuery + Bootstrap -->
-<script src="assets/js/jquery-1.11.2.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-
-<!-- JQuery UI -->
-<script src="assets/js/jquery-ui.min.js"></script>
-
-<!-- Bootstrap Datepicker -->
-<script src="assets/js/bootstrap-datepicker.js"></script>
-<script>$('#_tanggal_lahir').datepicker({autoclose:true})</script>
-
-<!-- Own script -->
-<script src="assets/js/edit-profile.aksata.js"></script>
-
-<!-- Google Maps Location Picker -->
-<!--<script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
-<script src="js/locationpicker.jquery.min.js"></script>
-<script>
-$('#geo_1').locationpicker({
-location: {
-latitude: -6.881582908727207,
-longitude: 107.61207578253243
-},
-radius: 0,
-zoom: 15,
-inputBinding: {
-latitudeInput: $('#geo_lat_1'),
-longitudeInput: $('#geo_long_1'),
-radiusInput: null,
-locationNameInput: null
-}
-});
-				</script>-->
-		</body>
+    </script>
+    <style>
+        #target {
+            width: 345px;
+        }
+    </style>
+</head>
+<body>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<div id="map-canvas"></div>
+</body>
 </html>

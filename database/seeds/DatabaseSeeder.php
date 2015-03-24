@@ -228,7 +228,7 @@ class UserTableSeeder extends Seeder {
         foreach ($dataang as $data)
         {
             User::create(
-                ['nim' => $data->nim, 'password' => bcrypt('password'), 'role' => 'user']
+                ['nim' => $data->nim, 'password' => bcrypt('password'), 'role' => 'user', 'email' => $data->nim . '@std.stei.itb.ac.id']
             );
         }
 

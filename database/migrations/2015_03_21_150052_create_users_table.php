@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration {
             $table->string('nim', 8);
             $table->primary('nim');
             $table->enum('role', User::$roles);
+            $table->string('email', 60);
             $table->string('password', 60);
             $table->rememberToken();
             $table->timestamps();

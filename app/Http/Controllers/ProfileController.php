@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Profile;
 use Request;
+use Redirect;
 use Carbon;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
@@ -181,12 +182,43 @@ class ProfileController extends Controller {
         // special for tanggal_lahir
         $data['tanggal_lahir'] = Carbon::createFromFormat('m/d/Y', $data['tanggal_lahir']);
 
+        // upload file
+        if (Request::hasFile('foto'))
+        {
+            $ext = '.' . Request::file('foto')->getClientOriginalExtension();
+            $data['foto_url'] = 'foto/' . $nim . $ext;
+            Request::file('foto')->move(public_path() . '/foto', $nim . $ext);
+        }
+
         // update the profile
         $profile = Profile::find($nim);
         $profile->update($data);
         $profile->save();
 
         return Redirect('profile' . ($oldnim == null ? '' : $nim));
+    }
+
+    public function confirm($nim = null)
+    {
+        // replace nim with current login user if it is null
+        if ($nim == null && Auth::check())
+        {
+            $nim = Auth::user()->nim;
+        }
+
+        // check if current user is allowed to edit
+        if ($nim == null || Auth::guest() || !Auth::user()->isAllowedToEdit($nim))
+        {
+            return abort(404, 'You are not allowed to perform this action.');
+        }
+
+        // save current profle
+        $profile = Profile::find($nim);
+        $profile->updated_at = Carbon::now();
+        $profile->save();
+
+        // redirect to the last page
+        return Redirect::back();
     }
 
 	/**

@@ -18,8 +18,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-//Route::get('profile/{id}', 'MemberController@show');
-
 Route::get('profile', 'ProfileController@index');
 Route::get('profile/edit', 'ProfileController@edit');
 Route::post('profile/edit', 'ProfileController@update');
@@ -30,6 +28,7 @@ Route::get('profile/{nim}/edit', 'ProfileController@edit');
 Route::post('profile/{nim}/edit', 'ProfileController@update');
 Route::get('profile/{nim}/confirm', 'ProfileController@confirm');
 
+Route::get('search', 'SearchController@index');
 
-//Route::resource('profile', 'ProfileController');
-
+Route::get('settings', 'SettingsController@index');
+Route::post('settings', 'SettingsController@update');

@@ -23,7 +23,7 @@
                 </div>
 
                 @if(isset($hak_lihat))
-                    @include('profile.hak_lihat', ['id' => 'hak_lihat_' . $id . '_' . $i, 'value' => ($i > 0) ? $hak_lihat[$i-1] : 'private'])
+                    @include('profile.item.edit.hak_lihat', ['id' => 'hak_lihat_' . $id . '_' . $i, 'value' => ($i > 0) ? $hak_lihat[$i-1] : 'private'])
                 @endif
             </div>
             @endfor
