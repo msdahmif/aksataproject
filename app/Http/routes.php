@@ -32,3 +32,11 @@ Route::get('search', 'SearchController@index');
 
 Route::get('settings', 'SettingsController@index');
 Route::post('settings', 'SettingsController@update');
+
+Route::get('management', 'ManagementController@index');
+Route::get('management/create', 'ManagementController@create');
+Route::post('management/create', 'ManagementController@store');
+Route::get('management/{id}/edit', 'ManagementController@edit');
+
+Route::get('division/{id}/create', 'DivisionController@create');
+Route::post('division/{id}/create', 'DivisionController@store');
