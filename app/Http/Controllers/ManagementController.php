@@ -131,17 +131,7 @@ class ManagementController extends Controller {
         if (!empty($last)) {
 	        $last->tanggal_selesai = $data['tanggal_mulai'];;
 	        $last->save();
-
-	        // buat ketua sebelumnya menjadi user
-	        $lead = User::find($last->nim_ketua)->first();
-	        $lead->role = 'user';
-	        $lead->save();
         }
-
-        // buat ketua sebagai admin
-        $lead = User::find($data['nim_ketua'])->first();
-        $lead->role = 'admin';
-        $lead->save();
 
         // create the management
         $management = Management::create($data);
@@ -185,9 +175,49 @@ class ManagementController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function update(Request $request)
+	public function update(Request $request, $id)
 	{
+        // check if current user is allowed to edit
+        if (Auth::guest() || !(Auth::user()->role == 'admin'))
+        {
+            return abort(404, 'You are not allowed to perform this action.');
+        }
 
+        // singleValued
+        foreach (Management::$singleValued as $key)
+        {
+            // composite
+            if (in_array($key, Management::$composite))
+            {
+                $temp = [];
+                foreach (Request::all() as $requestKey => $requestValue)
+                {
+                    if (substr($requestKey, 0, strlen($key)) == $key)
+                    {
+                        $attrKey = substr($requestKey, strlen($key) + 1, strlen($requestKey));
+                        $temp[$attrKey] = $requestValue;
+                    }
+                }
+                $data[$key] = json_encode($temp);
+            }
+            // non-composite
+            else
+            {
+                if (Request::has($key))
+                {
+                    $data[$key] = Request::input($key);
+                }
+            }
+        }
+
+        $data['tanggal_mulai'] = Carbon::createFromFormat('m/d/Y', $data['tanggal_mulai']);
+
+        // update the management
+        $management = Management::find($id);
+        $management->update($data);
+        $management->save();
+
+        return Redirect('management');
 	}
 
 	/**

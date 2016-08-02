@@ -115,7 +115,15 @@ class DivisionController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        // check if current user is allowed to edit
+        if (Auth::guest() || !(Auth::user()->role == 'admin'))
+        {
+            return abort(404, 'You are not allowed to perform this action.');
+        }
+
+        $division = Division::findOrFail($id);
+
+        return view('management.division.edit')->with(['division' => $division, 'title' => 'Aksata 2.0: Edit Divisi']);
 	}
 
 	/**
@@ -123,9 +131,47 @@ class DivisionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function update(Request $request)
+	public function update(Request $request, $id)
 	{
+        // check if current user is allowed to edit
+        if (Auth::guest() || !(Auth::user()->role == 'admin'))
+        {
+            return abort(404, 'You are not allowed to perform this action.');
+        }
 
+        // singleValued
+        foreach (Management::$singleValued as $key)
+        {
+            // composite
+            if (in_array($key, Management::$composite))
+            {
+                $temp = [];
+                foreach (Request::all() as $requestKey => $requestValue)
+                {
+                    if (substr($requestKey, 0, strlen($key)) == $key)
+                    {
+                        $attrKey = substr($requestKey, strlen($key) + 1, strlen($requestKey));
+                        $temp[$attrKey] = $requestValue;
+                    }
+                }
+                $data[$key] = json_encode($temp);
+            }
+            // non-composite
+            else
+            {
+                if (Request::has($key))
+                {
+                    $data[$key] = Request::input($key);
+                }
+            }
+        }
+
+        // update the division
+        $division = Division::find($id);
+        $division->update($data);
+        $division->save();
+
+        return Redirect('management');
 	}
 
 	/**
@@ -136,7 +182,8 @@ class DivisionController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Division::destroy($id);
+        return Redirect('management');
 	}
 
 }

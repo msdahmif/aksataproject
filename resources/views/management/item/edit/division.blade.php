@@ -14,14 +14,18 @@
         </a>
     </div>
     <div class="col-xs-2">
-        <a class="btn btn-warning col-xs-12" href="{{ url('division/'. $division->id .'/create') }}">
+        <a class="btn btn-warning col-xs-12" href="{{ url('division/'. $division->id .'/edit') }}">
             Edit
         </a>
     </div>
     <div class="col-xs-2">
-        <a class="btn btn-danger col-xs-12" href="{{ url('division/'. $division->id .'/create') }}">
-            Delete
-        </a>
+        <form method="POST" action="{{ url('division/'. $division->id .'/delete') }}" >
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-danger col-xs-12" href="{{ url('division/'. $division->id .'/delete') }}">
+                Delete
+            </button>
+        </form>
     </div>
 </div>
 <hr/>
