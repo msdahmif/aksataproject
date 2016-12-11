@@ -21,7 +21,7 @@ Melakukan kumpul perdana dan mendata apa saja yang diperlukan untuk menyelesaika
 * Deliverables	: Dapat mengerti Framework Laravel dan dapat melakukan pemrograman dengan menggunakan Laravel.
 
 Pada Milestone ini, harus sudah mengerti Pemrograman PHP 7.0 dan Laravel 5.3, dan lebih baik untuk belajar **TIDAK MENDEKATI DEADLINE** karena frameworknya yang cukup rumit dan perlu membiasakan diri dengan framework ini.  
-Untuk belajar laravel, dapat dilihat di [Laravel 5 Fundamentals](https://laracasts.com/series/laravel-5-fundamentals), [Laravel Skill](https://laracasts.com/skills/laravel)(__direkomendasikan untuk dari step 1 sampai 4__). Dokumentasinya dapat dilihat di [sini](https://laravel.com).
+Untuk belajar laravel, dapat dilihat di [Laravel 5 Fundamentals](https://laracasts.com/series/laravel-5-fundamentals), [Laravel Skill](https://laracasts.com/skills/laravel) (__direkomendasikan untuk dari step 1 dan 4__). Dokumentasinya dapat dilihat di [sini](https://laravel.com).
 
 ## Milestone 2 : Migrasi ke Laravel 5.3
 * Rilis		: 18 Desember 2016
@@ -48,7 +48,7 @@ Pada Milestone ini, akan dilakukan integrasi antar bagian program dan diintegras
 ## Milestone 5 : Testing
 * Rilis		: 7 Januari 2017
 * Deadline	: 15 Januari 2017
-* Deliverables	: Aksata Project telah di_testing_ dan siap untuk dirilis
+* Deliverables	: Aksata Project telah di-_testing_ dan siap untuk dirilis
 
 Pada Milestone ini, akan dilakukan _testing_ seluruh bagian program, untuk dapat dilakukan dokumentasi secara penuh dan dapat dirilis dalam waktu dekat, menjadi __Aksata Project 1.0__.
 
@@ -57,7 +57,7 @@ Pada Milestone ini, akan dilakukan _testing_ seluruh bagian program, untuk dapat
 * Deadline	: 22 Januari 2017
 * Deliverables	: Aksata Project telah didokumentasikan secara penuh.
 
-Pada Milestone ini, akan dilakukan dokumentasi seluruh Proyek. Notice that __Tanggal Rilisnya sedikit berbeda dengan Milestone 1-5__, dapat dilakukan pendokumentasian pada saat melakukan Eksekusi sekalipun.
+Pada Milestone ini, akan dilakukan dokumentasi seluruh Proyek. Notice that __tanggal rilisnya sedikit berbeda dengan Milestone 1-5__, sehingga dapat dilakukan pendokumentasian pada saat melakukan eksekusi sekalipun.
 
 ## Milestone 7 : Rilis Versi 1.0
 * Rilis		: 23 Januari 2017
@@ -91,7 +91,7 @@ php artisan serve
 1. Menambahkan fitur __keaktifan__ untuk setiap anggota, baik __internal__ maupun __eksternal__.  
    Untuk fitur ini dilakukan penambahan tabel baru pada _database_(menambahkannya di dalam laravel).
 2. Fitur media sosial dapat dipertimbangkan untuk dapat __dihapus sama sekali__ atau dapat di-__add__ maupun di-__remove__.
-3. Tambahkan __status keanggotaan__, dan dapat di_check_ apakah sudah lulus atau belum. (Jika sudah, ubah status ke anggota kehormatan apabila awalnya adalah anggota biasa).
+3. Tambahkan __status keanggotaan__, dan dapat di-_check_ apakah sudah lulus atau belum. (Jika sudah, ubah status ke anggota kehormatan apabila awalnya adalah anggota biasa).
 4. Tambahkan __timestamp__, baik __waktu masuk terakhir__ maupun __waktu modifikasi terakhir__.
 5. Menentukan data yang __fix__ maupun yang bisa __multivalue__ (yang memakai JSON).
 6. Menambahkan __kolom divisi__.
@@ -119,9 +119,10 @@ php artisan serve
 
 ## Future Update
 1. Fitur Search yang dioptimasi
+2. Fitur untuk dapat mengimpor dan mengekspor ke CSV.
 
 ## Last Updated:
-10 Desember 2016 00:00:00 WIB
+11 Desember 2016 09:07:00 WIB
 
 ## License
 Copyright © 2016 Himpunan Mahasiswa Informatika Institut Teknologi Bandung (HMIF ITB)
