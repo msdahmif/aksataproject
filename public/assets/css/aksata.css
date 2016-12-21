@@ -1,0 +1,77 @@
+.item-key {
+		font-weight:bold;
+}
+.item-value {
+
+}
+ul.profile {
+		list-style-type:none;
+		padding: 0px;
+}
+ul.profile > li {
+		margin-bottom: 5px;
+}
+.item {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.item-icon {
+	text-align: center;
+}
+.subitem {
+	margin-top: 3px;
+	margin-bottom: 5px;
+}
+.subitem:hover {
+	cursor: move;
+}
+.hak_akses_group .btn-group, .hak_akses_group .btn-group button {
+	width: 100%;
+}
+.remove_button_container {
+	position: absolute;
+	/*top: 15px;*/
+	right: -5px;
+}
+.remove_button {
+	color: black;
+	/*position: absolute;*/
+	display: none;
+	/*top: 15px;*/
+	/*right: -5px;*/
+}
+.remove_button:hover {
+	color: gray;
+}
+
+/* for sticky footer */
+
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
+    margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer_push {
+    height: 80px;
+}
+
+footer {
+    height: 80px;
+    margin-top:20px;
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color:#efefef;
+}
+
+/*
+
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+
+*/
