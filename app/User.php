@@ -1,65 +1,29 @@
-<?php namespace App;
+<?php
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+namespace App;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-	use Authenticatable, CanResetPassword;
-
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+class User extends Authenticatable
+{
+    use Notifiable;
 
     /**
-     * The primary key of User
-     *
-     * @var string
-     */
-    public $primaryKey = 'nim';
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = ['name', 'email', 'password'];
-
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = ['password', 'remember_token'];
-
-    /**
-     * The roles that are available for the users.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    public static $roles = ['admin', 'spectator', 'user', 'public'];
-
-    public function profile()
-    {
-        return $this->hasOne('\App\Profile', 'nim', 'nim');
-    }
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
     /**
-     * Check if the current user is allowed to edit profiles
-     * for a given nim.
+     * The attributes that should be hidden for arrays.
      *
-     * @param $nim
+     * @var array
      */
-    public function isAllowedToEdit($nim)
-    {
-        // it is allowed if the nim matches current user, or current user is an admin
-        return $this->nim == $nim || $this->role == 'admin';
-    }
-
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
