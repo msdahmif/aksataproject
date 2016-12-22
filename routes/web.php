@@ -34,3 +34,15 @@ Route::get('search', 'SearchController@index');
 
 Route::get('settings', 'SettingsController@index');
 Route::post('settings', 'SettingsController@update');
+
+Route::get('management', 'ManagementController@index');
+Route::get('management/create', 'ManagementController@create');
+Route::post('management/create', 'ManagementController@store');
+Route::get('management/{id}/edit', 'ManagementController@edit');
+Route::post('management/{id}/edit', 'ManagementController@update');
+
+Route::get('division/{id}/create', 'DivisionController@create');
+Route::post('division/{id}/create', 'DivisionController@store');
+Route::get('division/{id}/edit', 'DivisionController@edit');
+Route::post('division/{id}/edit', 'DivisionController@update');
+Route::delete('division/{id}/delete', 'DivisionController@destroy');
