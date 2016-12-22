@@ -12,3 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+// Source: Illuminate/Routing/Router
+
+// Authentication
+Route::get('auth/login', 'Auth\LoginController@showLoginForm');
+Route::post('auth/login', 'Auth\LoginController@login');
+Route::get('auth/logout', 'Auth\LoginController@logout');
