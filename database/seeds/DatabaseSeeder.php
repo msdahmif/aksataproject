@@ -212,7 +212,6 @@ class ProfileTableSeeder extends Seeder {
 }
 
 class UserTableSeeder extends Seeder {
-
     /**
      * Run the database seeds.
      *
@@ -252,5 +251,4 @@ class UserTableSeeder extends Seeder {
             );
         }
     }
-
 }

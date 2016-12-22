@@ -41,7 +41,6 @@ class CreateProfilesTable extends Migration {
 
             // the access rights for each of the fields
             $table->json('hak_lihat');
-
             // created_at and updated_at fields
             $table->timestamps();
 		});

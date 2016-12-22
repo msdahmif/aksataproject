@@ -2,11 +2,11 @@
 Sistem Informasi Manajemen Anggota HMIF ITB :: Versi 0.7
 
 ## Garis Besar Proyek
-Proyek ini bertujuan untuk mendata diri dan aktivitas internal maupun eksternal dari setiap anggota HMIF ITB. 
+Proyek ini bertujuan untuk mendata diri dan aktivitas internal maupun eksternal dari setiap anggota HMIF ITB.
 
 ## Permasalahan yang Dihadapi
-* Masih terdapat banyak fitur pada Aksata Project yang belum bisa dijalankan (Untuk detail lebih lengkapnya dapat dilihat di bawah). 
-* Kode akan dimigrasikan ke Framework Laravel yang terbaru, yaitu Laravel 5.3. 
+* Masih terdapat banyak fitur pada Aksata Project yang belum bisa dijalankan (Untuk detail lebih lengkapnya dapat dilihat di bawah).
+* Kode akan dimigrasikan ke Framework Laravel yang terbaru, yaitu Laravel 5.3.
 
 ## Kumpul Perdana
 * Rilis		: 6 Desember 2016
@@ -69,11 +69,13 @@ Pada Milestone ini, yang dilakukan adalah merilis proyek secara utuh dan dapat d
 ## Initiate Laravel Program
 
 ### How to Use it:
-composer install  
-npm install  
-cp .env.example .env  
-php artisan key:generate  
-php artisan migrate  
+1. install dependencies dengan menggunakan command sebagai berikut:  
+   `sudo apt install php7.0-mysql php7.0-mcrypt php7.0-mbstring php7.0-xml`
+2. composer install  
+3. npm install  
+4. cp .env.example .env  
+5. php artisan key:generate  
+6. php artisan migrate  
 
 ### How to Serve
 php artisan serve
@@ -122,8 +124,7 @@ php artisan serve
 2. Fitur untuk dapat mengimpor dan mengekspor ke CSV.
 
 ## Last Updated:
-11 Desember 2016 09:07:00 WIB
+22 Desember 2016 22:00:00 WIB
 
 ## License
 Copyright © 2016 Himpunan Mahasiswa Informatika Institut Teknologi Bandung (HMIF ITB)
-
