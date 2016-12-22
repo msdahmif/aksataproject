@@ -22,10 +22,10 @@ class CreateProfilesTable extends Migration {
             $table->string('nama_panggilan', 20);
             $table->string('foto_url', 100);
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->json('telepon');
-            $table->json('email');
-            $table->json('alamat_asal');
-            $table->json('alamat_bandung');
+            $table->text('telepon');
+            $table->text('email');
+            $table->text('alamat_asal');
+            $table->text('alamat_bandung');
             $table->string('tempat_lahir', 20);
             $table->date('tanggal_lahir');
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
@@ -34,13 +34,13 @@ class CreateProfilesTable extends Migration {
             // optional fields
             $table->string('mbti', 4);
             $table->string('nim_tpb', 8);
-            $table->json('media_sosial');
+            $table->text('media_sosial');
 
             // MSDA's notes
             $table->text('catatan_msda');
 
             // the access rights for each of the fields
-            $table->json('hak_lihat');
+            $table->text('hak_lihat');
 
             // created_at and updated_at fields
             $table->timestamps();
