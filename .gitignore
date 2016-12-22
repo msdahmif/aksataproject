@@ -1,3 +1,7 @@
 /vendor
 /node_modules
 .env
+.idea/
+composer.phar
+resources/views/vendor/notifications/
+resources/views/vendor/pagination/
