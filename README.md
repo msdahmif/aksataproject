@@ -75,7 +75,8 @@ Pada Milestone ini, yang dilakukan adalah merilis proyek secara utuh dan dapat d
 3. npm install  
 4. cp .env.example .env  
 5. php artisan key:generate  
-6. php artisan migrate  
+6. php artisan migrate
+7. php artisan db:seed
 
 ### How to Serve
 php artisan serve
