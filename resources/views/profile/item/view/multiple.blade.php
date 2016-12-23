@@ -1,3 +1,4 @@
+@if ((count($values) !== 0) && (count(array_filter($values)) !== 0))
 <div class="row item">
     <div class="col-xs-1">
         {!! $icon !!}
@@ -6,13 +7,6 @@
         <div class="row">
             <div class="col-xs-4 item-key">
                 {{ $label }}
-            </div>
-            <div class="col-xs-8 item-value">
-                @if (count($values) == 0)
-                    @include('profile.item.view.nodata')
-                @elseif (count(array_filter($values)) == 0)
-                    @include('profile.item.view.hidden')
-                @endif
             </div>
         </div>
         @foreach ($values as $value)
@@ -33,3 +27,4 @@
         @endforeach
     </div>
 </div>
+@endif

@@ -47,6 +47,7 @@
             @include('profile.item.view.multiple', ['label' => 'Email', 'values' => $profile->email, 'icon' => '<i class="fa fa-envelope"></i>'])
 
             {{--Alamat--}}
+			@if (($profile->alamat_bandung !== null) && ($profile->alamat_asal !== null))
             <div class="row item">
                 <div class="col-xs-1">
                     <i class="fa fa-map-marker"></i>
@@ -57,34 +58,31 @@
                             Alamat
                         </div>
                     </div>
+					@if ($profile->alamat_bandung !== null)
                     <div class="row">
                         <div class="col-xs-4">
                             Alamat Bandung
                         </div>
                         <div class="col-xs-8 item-value">
-                            @if ($profile->alamat_bandung !== null)
-                                {{ $profile->alamat_bandung->jalan . ', ' . $profile->alamat_bandung->kota . ', ' . $profile->alamat_bandung->provinsi . ' ' . $profile->alamat_bandung->kodepos }}
-                                <a class="button pull-right show_location" href="#" title="Lihat lokasi" data-position="{{ $profile->alamat_bandung->geolocation }}"><i class="fa fa-lg fa-map-marker"></i></a>
-                            @else
-                                @include('profile.item.view.hidden')
-                            @endif
+							{{ $profile->alamat_bandung->jalan . ', ' . $profile->alamat_bandung->kota . ', ' . $profile->alamat_bandung->provinsi . ' ' . $profile->alamat_bandung->kodepos }}
+							<a class="button pull-right show_location" href="#" title="Lihat lokasi" data-position="{{ $profile->alamat_bandung->geolocation }}"><i class="fa fa-lg fa-map-marker"></i></a>
                         </div>
                     </div>
+					@endif
+					@if ($profile->alamat_asal !== null)
                     <div class="row">
                         <div class="col-xs-4">
                             Alamat Asal
                         </div>
                         <div class="col-xs-8 item-value">
-                            @if ($profile->alamat_asal !== null)
-                                {{ $profile->alamat_asal->jalan . ', ' . $profile->alamat_asal->kota . ', ' . $profile->alamat_asal->provinsi . ' ' . $profile->alamat_asal->kodepos }}
-                                <a class="button pull-right show_location" href="#" title="Lihat lokasi" data-position="{{ $profile->alamat_asal->geolocation }}"><i class="fa fa-lg fa-map-marker"></i></a>
-                            @else
-                                @include('profile.item.view.hidden')
-                            @endif
+							{{ $profile->alamat_asal->jalan . ', ' . $profile->alamat_asal->kota . ', ' . $profile->alamat_asal->provinsi . ' ' . $profile->alamat_asal->kodepos }}
+							<a class="button pull-right show_location" href="#" title="Lihat lokasi" data-position="{{ $profile->alamat_asal->geolocation }}"><i class="fa fa-lg fa-map-marker"></i></a>
                         </div>
                     </div>
+					@endif
                 </div>
             </div>
+			@endif
 
             <!-- Google Maps Modal -->
             <div class="modal fade" id="gmaps_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -107,9 +105,11 @@
             </div>
             <!-- /Google Maps Modal -->
 
+			@if (($profile->nim_tpb !== null) && ($profile->golongan_darah !== null) && ($profile->penyakit !== null) && ($profile->mbti !== null) && ($profile->media_sosial !== null))
             <legend>
                 Additional Information
             </legend>
+			@endif
 
             {{--NIM TPB--}}
             @include('profile.item.view.single', ['label' => 'NIM TPB', 'value' => $profile->nim_tpb])

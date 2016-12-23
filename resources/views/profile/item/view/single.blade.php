@@ -1,3 +1,4 @@
+@if ($value !== null)
 <div class="row item">
     <div class="col-xs-1">
         @if (isset($icon))
@@ -10,12 +11,9 @@
                 {{ $label }}
             </div>
             <div class="col-xs-8 item-value">
-                @if ($value !== null)
-                    {{ $value }}
-                @else
-                    @include('profile.item.view.hidden')
-                @endif
+                {{ $value }}
             </div>
         </div>
     </div>
 </div>
+@endif
