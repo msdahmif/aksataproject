@@ -98,7 +98,16 @@ php artisan serve
 5. Menentukan data yang __fix__ maupun yang bisa __multivalue__ (yang memakai JSON).
 6. Menambahkan __kolom divisi__.
 7. Menghilangan kolom yang **tidak diauthorisasi** oleh user (contoh : private information).
-10. Deploy di server dan dapat digunakan oleh seluruh massa HMIF
+8. Menambah **privileges** pada setiap *page*.
+9. Merefaktor menjadi *clean code* untuk setiap kode program. 
+10. Deploy di server dan dapat digunakan oleh seluruh massa HMIF.
+
+#### Pembagian Tugas
+1. 1,3,4,6 : Radit
+2. 2,4,5,7 : Daniel
+3. 8,9 : Radit & Daniel
+
+**N.B**: Untuk pembagian tugas ini, mohon dilakukan di **branch masing-masing** sebelum melakukan merge ke master. 
 
 ### Authorization for Different User
 1. UMUM:
