@@ -198,7 +198,7 @@
                 <!-- Buttons -->
                 <div class="row">
                     <div class="col-xs-6">
-                        <button class="btn btn-primary col-xs-12">
+                        <button class="btn btn-primary col-xs-12" id="_simpan_button">
                             Simpan
                         </button>
                     </div>
