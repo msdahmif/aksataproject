@@ -2,8 +2,8 @@ $(document).ready(function() {
     // add "required" to all input
     $('body').find('input, select').each(function (i, e) {
         name = $(e).attr('name');
-        // only add required if this is not a template subitem, and if it is not file
-        if (name.substr(name.length - 2) != '_0' && $(e).attr('type') != 'file') {
+        // exclude template subitem, file, hidden input, and pac-input (search)
+        if (name.substr(name.length - 2) != '_0' && e.id != 'pac-input' && $(e).attr('type') != 'file' && $(e).attr('type') != 'hidden') {
             $(e).attr('required', '');
         }
     });
