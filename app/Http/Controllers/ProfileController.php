@@ -195,7 +195,7 @@ class ProfileController extends Controller {
         $profile->update($data);
         $profile->save();
 
-        return Redirect('profile' . ($oldnim == null ? '' : $nim));
+        return Redirect('profile' . ($oldnim == null ? '' : '/' . $nim));
     }
 
     public function confirm($nim = null)
