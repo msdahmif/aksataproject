@@ -164,8 +164,7 @@ $(document).ready(function() {
 
     // event tombol batal
     $('body').on('click', '#_batal_button', function () {
-        message("Apakah Anda yakin?");
-        return false;
+        return confirm('Apakah Anda yakin?');
     });
     // event tombol simpan
     $('body').on('click', '#_simpan_button', function () {
