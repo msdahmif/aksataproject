@@ -33,8 +33,8 @@ class SearchController extends Controller {
     {
         // split $q
 //        $q = explode(" \r\t\n`!@#$%^&*()-=_+{}[]\\|;:'\",./<>?", strtolower($_q));
-        $q = explode(" ", strtolower(str_replace(" \r\t\n`!@#$%^&*()-=_+{}[]\\|;:'\",./<>?", " ", $_q)));
-        array_filter($q);
+        $e = explode(" ", strtolower(str_replace(" \r\t\n`!@#$%^&*()-=_+{}[]\\|;:'\",./<>?", " ", $_q)));
+        $q = array_filter($e);
 
         // if $q is empty, return an empty array
         if (!count($q)) return [];
