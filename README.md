@@ -7,59 +7,6 @@ Proyek ini bertujuan untuk mendata diri dan aktivitas internal maupun eksternal 
 ## Permasalahan yang Dihadapi
 * Masih terdapat banyak fitur pada Aksata Project yang belum bisa dijalankan (Untuk detail lebih lengkapnya dapat dilihat di bawah).
 
-## Milestone 0 : Bertemu dengan MASTER
-* Rilis		: 24 Januari 2017
-* Deliverables : Skema Aksata sudah ditentukan secara penuh; To Do List sudah dibuat.
-
-Pada Milestone ini, dilakukan pengecekan seluruh fitur, apakah sudah sesuai dengan spesifikasi atau belum.  
-Setelah itu, melakukan pengecekan / testing seluruh bug yang terjadi, dan membuat list untuk pengerjaan selanjutnya.
-
-## Milestone 1 : Security Feature and Debugging Important Part
-* Rilis     : 25 Januari 2017
-* Deadline	: LPJ Kepengurusan HMIF 2016
-* Deliverables	: Aksata Project telah terdeploy
-
-Pada Milestone ini, yang dilakukan adalah merilis proyek secara utuh dan sebagian fitur dapat digunakan oleh setiap anggota HMIF ITB.  
-Pada bagian ini, akan dilakukan fixing terhadap bug-bug pada program, memuktahirkan fitur security, dan menambahkan fitur untuk menambah kegiatan-kegiatan yang tersedia.
-
-## Milestone 2 : Fix Recent Bugs
-* Rilis     : 31 Januari 2017
-* Deadline  : 5 Februari 2017
-* Deliverables  : Seluruh bug telah selesai dibuat
-
-Pada Milestone ini, yang dilakukan adalah membetulkan bug-bug yang muncul pada saat testing.  
-List of bug dapat ditemukan pada bagian bawah dari README ini.
-
-## Milestone 3.1 : Menambahkan Kolom Suatu Relasi pada Database: keanggotaan
-* Rilis     : 6 Februari 2017
-* Deadline  : 8 Februari 2017
-* Deliverables  : Database sudah siap untuk dipakai pada fitur kegiatan mahasiswa
-
-Pada Milestone ini, relasi __profile__ akan diupdate untuk dipakai pada tabel-tabel kegiatan mahasiswa (baik eksternal, internal).
-
-## Milestone 3.2 : Menambahkan Relasi Kegiatan Non-Akademik Pada Database
-* Rilis     : 9 Februari 2017
-* Deadline  : 16 Februari 2017
-* Deliverables  : Skema database sudah siap berikut bagian kegiatannya
-
-Pada Milestone ini, seluruh relasi yang berhubungan dengan kegiatan non-akademik mahasiswa sudah dibuat. Hal ini menandakan skema database sudah lengkap dan siap untuk dipakai.
-
-## Milestone 4 : Testing Akhir & Fixing Bugs
-* Rilis     : 17 Februari 2017
-* Deadline  : 25 Februari 2017
-* Deliverables  : Website sudah testing dan siap untuk dirilis
-
-Pada Milestone ini, seluruh bagian website sudah ditesting dan sudah terdapat spare waktu untuk fixing bugs, dan siap untuk rilis.
-
-## RILIS
-26 Februari 2017
-## Milestone Keseluruhan
-* Rilis     : 25 Januari 2017
-* Deadline  : 1 Maret 2017
-* Deliverables : Dokumentasi seluruh project aksata.
-
-Pada Milestone keseluruhan, milestone ini dikerjakan berbarengan dengan milestone lainnya, yaitu membuat dokumentasi untuk dapat dikerjakan dan diturunkan ke anak bawah.
-
 ## Initiate Laravel Program
 
 ### How to Use it:
@@ -85,7 +32,6 @@ Pada Milestone keseluruhan, milestone ini dikerjakan berbarengan dengan mileston
 1. Jenis Kelamin masih bug
 2. Database bug (jumlah kolom yang tidak sama pada satu atribut)
 3. Search bug (pencarian dengan __empty needle__)
-
 
 ### To Do List (Technical)
 1. Mengubah seeder DatabaseSeeder
@@ -114,7 +60,6 @@ Pada Milestone keseluruhan, milestone ini dikerjakan berbarengan dengan mileston
     5. prestasi (tanggal, title, deskripsi, tingkat)
     6. keanggotaan_prestasi (many to many) (nim, id_kepengurusan, prestasi)
 
-
 #### Pembagian Tugas
 
 **N.B**: Untuk pembagian tugas ini, mohon dilakukan di **branch masing-masing** sebelum melakukan merge ke master. 
@@ -138,6 +83,7 @@ Pada Milestone keseluruhan, milestone ini dikerjakan berbarengan dengan mileston
 ## Future Update
 1. Fitur Search yang dioptimasi
 2. Fitur untuk dapat mengimpor dan mengekspor ke CSV.
+3. Optimasi Database
 
 ## Last Updated:
 25 Januari 2017 07:00:00 WIB

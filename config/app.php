@@ -226,9 +226,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 				// custom aliases
-		    'Carbon'    => Carbon\Carbon::class,
-		    'HTML'     => Collective\Html\HtmlFacade::class,
-				'Form'		 => Collective\Html\FormFacade::class,
+        'Carbon'    => Carbon\Carbon::class,
+        'HTML'     => Collective\Html\HtmlFacade::class,
+        'Form'		 => Collective\Html\FormFacade::class,
 
     ],
 

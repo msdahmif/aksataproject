@@ -18,6 +18,7 @@ class CreateProfilesTable extends Migration {
             $table->string('nim', 8);
             $table->primary('nim');
             $table->integer('angkatan');
+            $table->string('wali', 60);
             $table->string('nama_lengkap', 60);
             $table->string('nama_panggilan', 20);
             $table->string('foto_url', 100);
@@ -28,8 +29,10 @@ class CreateProfilesTable extends Migration {
             $table->text('alamat_bandung');
             $table->string('tempat_lahir', 20);
             $table->date('tanggal_lahir');
+
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
             $table->text('penyakit');
+            $table->enum('keanggotaan', ['Muda', 'Biasa', 'Kehormatan', 'Other']);
 
             // optional fields
             $table->string('mbti', 4);

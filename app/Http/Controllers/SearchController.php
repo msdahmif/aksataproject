@@ -40,6 +40,8 @@ class SearchController extends Controller {
         if (!count($q)) return [];
 
         // iterate through each profile, check if they match the query
+
+        // change to query scope
         $profiles = Profile::get();
         $result = [];
         foreach ($profiles as $profile)

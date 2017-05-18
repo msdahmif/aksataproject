@@ -38,7 +38,7 @@ class MemberController extends Controller {
             return abort(404, "The member you are looking for doesn't exist");
         }
 
-        return view('profile.view')->with(['member' => $member, 'title' => 'Aksata 2.0: Profile Page']);
+        return view('profile.view')->with(['member' => $member, 'title' => 'Aksata Project: Profile Page']);
     }
 	
 	public function edit($id)
