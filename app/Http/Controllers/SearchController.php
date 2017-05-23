@@ -29,10 +29,9 @@ class SearchController extends Controller {
      * @param $q
      * @return mixed
      */
-    public function search($_q)
+    private function search($_q)
     {
         // split $q
-//        $q = explode(" \r\t\n`!@#$%^&*()-=_+{}[]\\|;:'\",./<>?", strtolower($_q));
         $e = explode(" ", strtolower(str_replace(" \r\t\n`!@#$%^&*()-=_+{}[]\\|;:'\",./<>?", " ", $_q)));
         $q = array_filter($e);
 
@@ -144,6 +143,7 @@ class SearchController extends Controller {
 	public function update($id)
 	{
 		//
+
 	}
 
 	/**

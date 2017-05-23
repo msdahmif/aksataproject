@@ -42,8 +42,6 @@
 
         </div>
     </div>
-
-    <div class="footer_push"></div>
 </div>
 
 @include('app.footer')

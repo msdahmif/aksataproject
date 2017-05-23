@@ -103,6 +103,12 @@
                     </div>
                 </div>
             </div>
+
+
+            {{-- Kepengurusan --}}
+            @include('profile.item.view.multiple');
+            {{-- Kepanitiaan --}}
+
             <!-- /Google Maps Modal -->
 
 			@if (($profile->nim_tpb !== null) && ($profile->golongan_darah !== null) && ($profile->penyakit !== null) && ($profile->mbti !== null) && ($profile->media_sosial !== null))
@@ -125,7 +131,6 @@
 
             {{--Media Sosial--}}
             @include('profile.item.view.multiple', ['label' => 'Media Sosial', 'values' => $profile->media_sosial, 'icon' => '<i class="fa fa-facebook-official"></i>'])
-
             <hr>
 
             <p><em title="{{ $profile->updated_at->toRfc2822String() }}">Last
@@ -145,10 +150,9 @@
                         </a>
                     </div>
                 </div>
-                @endif
-                        <!-- /Buttons -->
-
-                <hr>
+            @endif
+            <!-- /Buttons -->
+            <hr>
 
         </div>
         <!--/Profile -->
