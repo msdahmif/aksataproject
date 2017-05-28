@@ -34,9 +34,8 @@ class ProfileController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
+	public function create(){
+		// not necessary for now
 	}
 
 	/**
@@ -44,9 +43,8 @@ class ProfileController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
+	public function store(){
+	    // not necessary for now
 	}
 
 	/**
@@ -59,16 +57,13 @@ class ProfileController extends Controller {
 	{
         $profile = Profile::find($nim);
 
-        if ($profile == null)
-        {
+        if ($profile == null){
             return abort(404, "The profile you are looking for doesn't exist");
         }
 
         $profile->filter();
 
-//        return dd($profile);
-
-        return view('profile.view')->with(['profile' => $profile, 'title' => 'Aksata 2.0: Profile']);
+        return view('profile.view')->with(['profile' => $profile, 'title' => 'Aksata: Profile']);
 	}
 
 	/**
@@ -80,14 +75,12 @@ class ProfileController extends Controller {
 	public function edit($nim = null)
 	{
         // replace nim with current login user if it is null
-        if ($nim == null && Auth::check())
-        {
+        if ($nim == null && Auth::check()){
             $nim = Auth::user()->nim;
         }
 
         // check if current user is allowed to edit
-        if (Auth::guest() || !Auth::user()->isAllowedToEdit($nim))
-        {
+        if (Auth::guest() || !Auth::user()->isAllowedToEdit($nim)){
             return abort(404, 'You are not allowed to perform this action.');
         }
 
@@ -95,9 +88,7 @@ class ProfileController extends Controller {
         $profile = Profile::find($nim);
         $profile->filter();
 
-//        return dd($profile->tanggal_lahir);
-
-        return view('profile.edit')->with(['profile' => $profile, 'title' => 'Aksata 2.0: Edit Profile']);
+        return view('profile.edit')->with(['profile' => $profile, 'title' => 'Aksata: Edit Profile']);
 	}
 
     /**
@@ -148,27 +139,22 @@ class ProfileController extends Controller {
         }
 
         // singleValued
-        foreach (Profile::$singleValued as $key)
-        {
+        foreach (Profile::$singleValued as $key) {
             // composite
-            if (in_array($key, Profile::$composite))
-            {
+            if (in_array($key, Profile::$composite)) {
                 $temp = [];
-                foreach (Request::all() as $requestKey => $requestValue)
-                {
-                    if (substr($requestKey, 0, strlen($key)) == $key)
-                    {
+                foreach (Request::all() as $requestKey => $requestValue) {
+                    if (substr($requestKey, 0, strlen($key)) == $key) {
                         $attrKey = substr($requestKey, strlen($key) + 1, strlen($requestKey));
                         $temp[$attrKey] = $requestValue;
                     }
                 }
                 $data[$key] = json_encode($temp);
             }
+
             // non-composite
-            else
-            {
-                if (Request::has($key))
-                {
+            else {
+                if (Request::has($key)) {
                     $data[$key] = Request::input($key);
                 }
             }
@@ -201,14 +187,12 @@ class ProfileController extends Controller {
     public function confirm($nim = null)
     {
         // replace nim with current login user if it is null
-        if ($nim == null && Auth::check())
-        {
+        if ($nim == null && Auth::check()){
             $nim = Auth::user()->nim;
         }
 
         // check if current user is allowed to edit
-        if ($nim == null || Auth::guest() || !Auth::user()->isAllowedToEdit($nim))
-        {
+        if ($nim == null || Auth::guest() || !Auth::user()->isAllowedToEdit($nim)) {
             return abort(404, 'You are not allowed to perform this action.');
         }
 
@@ -227,9 +211,7 @@ class ProfileController extends Controller {
 	 * @param  string   $nim
 	 * @return Response
 	 */
-	public function destroy($nim)
-	{
+	public function destroy($nim){
 		//
 	}
-
 }

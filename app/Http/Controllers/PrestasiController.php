@@ -17,8 +17,10 @@ class PrestasiController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(){
-        return view('prestasi.index');
+    public function index($nim = Auth::user()->nim){
+        $prestasis = Prestasi::where('user_nim', $nim)->get();
+
+        return view('prestasi.index', compact('prestasis'));
     }
 
     /**

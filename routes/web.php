@@ -54,6 +54,9 @@ Route::get('prestasi', 'PrestasiController@index');
 Route::get('prestasi/create', 'PrestasiController@create');
 Route::post('prestasi/create', 'PrestasiController@store');
 Route::get('prestasi/{prestasi}', 'PrestasiController@show');
+Route::get('prestasi/nim/{nim}', 'PrestasiController@index');
+
+// Prestasi for admin
 Route::get('prestasi/{prestasi}/edit', 'PrestasiController@edit');
 Route::post('prestasi/{prestasi}/edit', 'PrestasiController@update');
 // Still not implement delete Prestasi
@@ -61,4 +64,4 @@ Route::post('prestasi/{prestasi}/edit', 'PrestasiController@update');
 /////////////////////////// ADMIN PAGE ///////////////////////////
 // MSDA Controller
 Route::get('change-request', 'ChangeRequestController@index')->middleware('msda');
-Route::get('change-request/{id}', 'ChangeRequestController@show')->middleware('msda');
+Route::get('change-request/{changerequest}', 'ChangeRequestController@show')->middleware('msda');

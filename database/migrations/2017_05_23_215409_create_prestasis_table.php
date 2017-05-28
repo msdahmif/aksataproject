@@ -15,18 +15,16 @@ class CreatePrestasisTable extends Migration
     {
         Schema::create('prestasis', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_nim');
             $table->date('tanggal');
             $table->string('title');
             $table->text('deskripsi');
             $table->enum('tingkat', ['ITB', 'Nasional', 'Regional', 'Internasional', 'Other']);
             $table->timestamps();
-        });
 
-        Schema::create('keanggotaan_prestasi', function (Blueprint $table){
-            $table->increments('id'); //gayakin mau dipake atau nggak
-            $table->integer('profile_nim');
-            $table->integer('prestasi_id');
-            $table->primary(['profile_nim', 'prestasi_id']);
+            // foreign key to the users table (ketua)
+            $table->foreign('user_nim')->references('nim')->on('users')->onDelete('cascade');
+
         });
     }
 

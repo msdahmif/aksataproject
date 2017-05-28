@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\User;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Prestasi extends Model
@@ -12,5 +14,8 @@ class Prestasi extends Model
 
     protected $dates = ['tanggal'];
 
-
+    /* Eloquent Relationships */
+    public function user(){
+        return $this->belongsTo(User::class, 'user_nim', 'nim');
+    }
 }

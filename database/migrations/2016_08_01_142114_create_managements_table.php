@@ -22,7 +22,7 @@ class CreateManagementsTable extends Migration
             $table->timestamps();
 
             // foreign key to the members table (ketua)
-            $table->foreign('nim_ketua')->references('nim')->on('profiles')->onDelete('cascade');
+            $table->foreign('nim_ketua')->references('nim')->on('users')->onDelete('cascade');
         });
     }
 

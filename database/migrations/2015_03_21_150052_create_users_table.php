@@ -22,9 +22,6 @@ class CreateUsersTable extends Migration {
             $table->string('password', 60);
             $table->rememberToken();
             $table->timestamps();
-
-            // foreign key to the members table
-            $table->foreign('nim')->references('nim')->on('profiles')->onDelete('cascade');
         });
     }
 

@@ -33,8 +33,7 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = ['telepon', 'email', 'media_sosial', 'nama_lengkap', 'nama_panggilan', 'foto_url',
-        'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat_asal', 'alamat_bandung', 'golongan_darah',
-        'penyakit', 'mbti', 'nim_tpb', 'hak_lihat'];
+        'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat_asal', 'alamat_bandung', 'nim_tpb', 'hak_lihat'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -45,12 +44,11 @@ class Profile extends Model
 
     public static $multiValued = ['telepon', 'email', 'media_sosial'];
     public static $singleValued = ['nim', 'nama_lengkap', 'nama_panggilan', 'foto_url', 'jenis_kelamin', 'tempat_lahir',
-        'tanggal_lahir', 'alamat_asal', 'alamat_bandung', 'golongan_darah', 'penyakit', 'mbti', 'nim_tpb'];
+        'tanggal_lahir', 'alamat_asal', 'alamat_bandung', 'nim_tpb'];
     public static $composite = ['alamat_asal', 'alamat_bandung'];
     public static $alwaysPublic = ['nim', 'nama_lengkap', 'nama_panggilan', 'foto_url'];
 
-    public function getRouteKey()
-    {
+    public function getRouteKey(){
         return $this->nim;
     }
 
@@ -59,9 +57,12 @@ class Profile extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo('\App\User', 'nim', 'nim');
+    }
+
+    public function prestasi(){
+        return $this->belongsToMany('\App\Prestasi');
     }
 
     /**
@@ -95,8 +96,7 @@ class Profile extends Model
         foreach (Profile::$multiValued as $key) {
             if (in_array($key, Profile::$alwaysPublic)) continue;
 
-            if (!is_array($this->hak_lihat->$key))
-            {
+            if (!is_array($this->hak_lihat->$key)) {
                 $this->hak_lihat->$key = json_decode($this->hak_lihat->$key);
             }
             $value = $this->hak_lihat->$key;

@@ -22,7 +22,7 @@ class CreateDivisionsTable extends Migration
             $table->timestamps();
 
             // foreign key to the members table (ketua)
-            $table->foreign('nim_ketua')->references('nim')->on('profiles')->onDelete('cascade');
+            $table->foreign('nim_ketua')->references('nim')->on('users')->onDelete('cascade');
 
             // foreign key to the management table
             $table->foreign('id_kepengurusan')->references('id')->on('managements')->onDelete('cascade');

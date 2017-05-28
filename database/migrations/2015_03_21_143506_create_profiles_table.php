@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration {
             // required fields
             $table->string('nim', 8);
             $table->primary('nim');
+
             $table->integer('angkatan');
             $table->string('wali', 60);
             $table->string('nama_lengkap', 60);
@@ -30,8 +31,6 @@ class CreateProfilesTable extends Migration {
             $table->string('tempat_lahir', 20);
             $table->date('tanggal_lahir');
 
-            $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
-            $table->text('penyakit');
             $table->enum('keanggotaan', ['Muda', 'Biasa', 'Kehormatan', 'Other']);
 
             // optional fields
@@ -44,9 +43,14 @@ class CreateProfilesTable extends Migration {
 
             // the access rights for each of the fields
             $table->text('hak_lihat');
+
             // created_at and updated_at fields
             $table->timestamps();
-		});
+
+            // foreign key to the members table
+            $table->foreign('nim')->references('nim')->on('users')->onDelete('cascade');
+
+        });
 	}
 
 	/**
