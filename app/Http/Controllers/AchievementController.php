@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Prestasi;
+use App\Achievement;
 use Illuminate\Http\Request;
 
-class PrestasiController extends Controller
+class AchievementController extends Controller
 {
     /**
-     * PrestasiController constructor.
+     * AchievementController constructor.
      */
     public function __construct(){
         $this->middleware('auth');
@@ -18,24 +18,24 @@ class PrestasiController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($nim = Auth::user()->nim){
-        $prestasis = Prestasi::where('user_nim', $nim)->get();
+        $achievements = Achievement::where('user_nim', $nim)->get();
 
-        return view('prestasi.index', compact('prestasis'));
+        return view('achievement.index', compact('achievements'));
     }
 
     /**
-     * @param Prestasi $id
+     * @param Achievement $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Prestasi $prestasi){
-        return view('prestasi.show', compact('prestasi'));
+    public function show(Achievement $achievement){
+        return view('achievement.show', compact('achievement'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(){
-        return view('prestasi.create');
+        return view('achievement.create');
     }
 
     /**
@@ -45,25 +45,25 @@ class PrestasiController extends Controller
     public function store($request){
         //store to database
 
-        return redirect('prestasi');
+        return redirect('achievement');
     }
 
     /**
-     * @param Prestasi $id
+     * @param Achievement $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Prestasi $prestasi){
+    public function edit(Achievement $achievement){
         // render the models here
-        return view('prestasi.edit', compact('prestasi'));
+        return view('achievement.edit', compact('achievement'));
     }
 
     /**
      * @param $request
-     * @param Prestasi $id
+     * @param Achievement $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update($request, Prestasi $prestasi){
+    public function update($request, Achievement $achievement){
         // store back and update the models here
-        return redirect('prestasi/'.$prestasi->id);
+        return redirect('achievement/'. $achievement->id);
     }
 }

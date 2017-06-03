@@ -49,17 +49,17 @@ Route::get('division/{id}/edit', 'DivisionController@edit');
 Route::post('division/{id}/edit', 'DivisionController@update');
 Route::delete('division/{id}/delete', 'DivisionController@destroy');
 
-// Prestasi
-Route::get('prestasi', 'PrestasiController@index');
-Route::get('prestasi/create', 'PrestasiController@create');
-Route::post('prestasi/create', 'PrestasiController@store');
-Route::get('prestasi/{prestasi}', 'PrestasiController@show');
-Route::get('prestasi/nim/{nim}', 'PrestasiController@index');
+// Achievement
+Route::get('achievement', 'AchievementController@index');
+Route::get('achievement/create', 'AchievementController@create');
+Route::post('achievement/create', 'AchievementController@store');
+Route::get('achievement/{achievement}', 'AchievementController@show');
+Route::get('achievement/nim/{nim}', 'AchievementController@index');
 
-// Prestasi for admin
-Route::get('prestasi/{prestasi}/edit', 'PrestasiController@edit');
-Route::post('prestasi/{prestasi}/edit', 'PrestasiController@update');
-// Still not implement delete Prestasi
+// Achievement for admin
+Route::get('achievement/{achievement}/edit', 'AchievementController@edit');
+Route::post('achievement/{achievement}/edit', 'AchievementController@update');
+// Still not implement delete achievement
 
 /////////////////////////// ADMIN PAGE ///////////////////////////
 // MSDA Controller

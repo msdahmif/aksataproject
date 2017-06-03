@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrestasisTable extends Migration
+class CreateAchievementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreatePrestasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('prestasis', function (Blueprint $table) {
+        Schema::create('achievements', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_nim');
+            $table->string('user_nim');
             $table->date('tanggal');
             $table->string('title');
             $table->text('deskripsi');
             $table->enum('tingkat', ['ITB', 'Nasional', 'Regional', 'Internasional', 'Other']);
             $table->timestamps();
 
-            // foreign key to the users table (ketua)
             $table->foreign('user_nim')->references('nim')->on('users')->onDelete('cascade');
 
         });
@@ -35,6 +34,6 @@ class CreatePrestasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prestasis');
+        Schema::dropIfExists('achievements');
     }
 }

@@ -15,42 +15,41 @@ class CreateProfilesTable extends Migration {
 		Schema::create('profiles', function(Blueprint $table)
 		{
             // required fields
-            $table->string('nim', 8);
-            $table->primary('nim');
-
+            $table->increments('id');
+            $table->string('user_nim');
             $table->integer('angkatan');
-            $table->string('wali', 60);
-            $table->string('nama_lengkap', 60);
-            $table->string('nama_panggilan', 20);
-            $table->string('foto_url', 100);
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->text('telepon');
-            $table->text('email');
-            $table->text('alamat_asal');
-            $table->text('alamat_bandung');
-            $table->string('tempat_lahir', 20);
+            $table->string('nama_lengkap', 128);
+            $table->string('nama_panggilan', 64);
+            $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
+
+            $table->string('email');
+            $table->text('telepon');
+
+            $table->text('alamat_asal')->nullable();
+            $table->text('alamat_bandung')->nullable();
+
+            $table->string('wali', 128)->nullable();
+            $table->string('foto_url', 128)->nullable();
 
             $table->enum('keanggotaan', ['Muda', 'Biasa', 'Kehormatan', 'Other']);
 
-            // optional fields
-            $table->string('mbti', 4);
-            $table->string('nim_tpb', 8);
-            $table->text('media_sosial');
-
-            // MSDA's notes
-            $table->text('catatan_msda');
+            $table->string('nim_tpb', 8)->nullable();
+            $table->text('media_sosial')->nullable();
 
             // the access rights for each of the fields
             $table->text('hak_lihat');
 
             // created_at and updated_at fields
             $table->timestamps();
-
-            // foreign key to the members table
-            $table->foreign('nim')->references('nim')->on('users')->onDelete('cascade');
-
         });
+
+        Schema::table('profiles', function(Blueprint $table){
+            // foreign key to the members table
+            $table->foreign('user_nim')->references('nim')->on('users');
+        });
+
 	}
 
 	/**

@@ -152,41 +152,6 @@
                 {{--NIM TPB--}}
                 @include('profile.item.edit.single', ['label' => 'NIM TPB', 'id' => 'nim_tpb', 'value' => $profile->nim_tpb, 'hak_lihat' => $profile->hak_lihat->nim_tpb])
 
-                {{--Golongan Darah--}}
-                @include('profile.item.edit.select', ['label' => 'Golongan Darah', 'id' => 'golongan_darah', 'value' => $profile->golongan_darah, 'values' => ['A', 'B', 'AB', 'O'], 'labelValues' => ['A', 'B', 'AB', 'O'], 'hak_lihat' => $profile->hak_lihat->golongan_darah, 'icon' => '<i class="fa fa-lg fa-tint"></i>'])
-
-                {{--Penyakit--}}
-                @include('profile.item.edit.single', ['label' => 'Penyakit', 'id' => 'penyakit', 'value' => $profile->penyakit, 'hak_lihat' => $profile->hak_lihat->penyakit, 'icon' => '<i class="fa fa-lg fa-medkit"></i>'])
-
-                {{--MBTI--}}
-                <div class="row item">
-                    <div class="col-xs-1 item-icon">
-                        <i class="fa fa-lg fa-star"></i>
-                    </div>
-                    <div class="col-xs-11">
-                        <div class="row">
-                            <div class="col-xs-4 item-key">
-                                <label for="mbti">
-                                    MBTI
-                                </label>
-                            </div>
-                            <div class="col-xs-6 item-value">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="mbti" id="mbti"
-                                           value="{{ $profile->mbti }}">
-											<span class="input-group-btn">
-												<a class="btn btn-info" href="//www.google.com/search?q=mbti+test"
-                                                   target="_blank" title="Ambil Tes MBTI">
-                                                    <i class="fa fa-check"></i>
-                                                </a>
-											</span>
-                                </div>
-                            </div>
-                            @include('profile.item.edit.hak_lihat', ['id' => 'hak_lihat_mbti', 'value' => $profile->hak_lihat->mbti])
-                        </div>
-                    </div>
-                </div>
-
                 {{--Social Media--}}
                 @include('profile.item.edit.multiple', ['label' => 'Media Sosial', 'id' => 'media_sosial', 'values' => $profile->media_sosial, 'hak_lihat' => $profile->hak_lihat->media_sosial, 'icon' => '<i class="fa fa-lg fa-facebook-official"></i>'])
 

@@ -13,12 +13,6 @@ class Profile extends Model
      */
     protected $table = 'profiles';
 
-    /**
-     * The primary key for this model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'nim';
 
     /**
      * The date fields.
@@ -40,17 +34,13 @@ class Profile extends Model
      *
      * @var array
      */
-    protected $hidden = ['hak_lihat', 'catatan_msda', 'created_at'];
+    protected $hidden = ['hak_lihat', 'created_at'];
 
     public static $multiValued = ['telepon', 'email', 'media_sosial'];
-    public static $singleValued = ['nim', 'nama_lengkap', 'nama_panggilan', 'foto_url', 'jenis_kelamin', 'tempat_lahir',
+    public static $singleValued = ['user_id', 'nama_lengkap', 'nama_panggilan', 'foto_url', 'jenis_kelamin', 'tempat_lahir',
         'tanggal_lahir', 'alamat_asal', 'alamat_bandung', 'nim_tpb'];
     public static $composite = ['alamat_asal', 'alamat_bandung'];
-    public static $alwaysPublic = ['nim', 'nama_lengkap', 'nama_panggilan', 'foto_url'];
-
-    public function getRouteKey(){
-        return $this->nim;
-    }
+    public static $alwaysPublic = ['user_id', 'nama_lengkap', 'nama_panggilan', 'foto_url'];
 
     /**
      * The respective user belonging to this profile
@@ -58,11 +48,7 @@ class Profile extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
-        return $this->belongsTo('\App\User', 'nim', 'nim');
-    }
-
-    public function prestasi(){
-        return $this->belongsToMany('\App\Prestasi');
+        return $this->belongsTo('\App\User', 'user_nim', 'nim');
     }
 
     /**
@@ -122,7 +108,7 @@ class Profile extends Model
         // determine the role of the viewer
         $role = 'public';
         if (Auth::check()) {
-            if (Auth::user()->nim == $this->nim) {
+            if (Auth::user()->nim == $this->user_nim) {
                 $role = 'admin';
             } else {
                 $role = Auth::user()->role;

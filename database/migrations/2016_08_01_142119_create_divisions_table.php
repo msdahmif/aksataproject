@@ -20,7 +20,9 @@ class CreateDivisionsTable extends Migration
             $table->integer('id_kepengurusan')->unsigned();
             $table->integer('id_super')->unsigned()->nullable();
             $table->timestamps();
+        });
 
+        Schema::table('divisions', function (Blueprint $table) {
             // foreign key to the members table (ketua)
             $table->foreign('nim_ketua')->references('nim')->on('users')->onDelete('cascade');
 
@@ -29,6 +31,7 @@ class CreateDivisionsTable extends Migration
 
             // foreign key to the division table (super)
             $table->foreign('id_super')->references('id')->on('divisions')->onDelete('cascade');
+
         });
     }
 

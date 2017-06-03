@@ -1,12 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 use App\Profile;
+use App\User;
 use Request;
 use Redirect;
-use Carbon;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
 
@@ -55,7 +54,7 @@ class ProfileController extends Controller {
 	 */
 	public function show($nim)
 	{
-        $profile = Profile::find($nim);
+        $profile = Profile::where('user_nim', $nim);
 
         if ($profile == null){
             return abort(404, "The profile you are looking for doesn't exist");
@@ -102,8 +101,7 @@ class ProfileController extends Controller {
         $oldnim = $nim;
 
         // replace nim with current login user if it is null
-        if ($nim == null && Auth::check())
-        {
+        if ($nim == null && Auth::check()) {
             $nim = Auth::user()->nim;
         }
 

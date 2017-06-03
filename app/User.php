@@ -21,7 +21,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    public $primaryKey = 'nim';
+    public $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -48,9 +48,12 @@ class User extends Authenticatable
      */
     public static $roles = ['admin', 'spectator', 'user', 'public'];
 
-    public function profile()
-    {
-        return $this->hasOne('\App\Profile', 'nim', 'nim');
+    public function profile(){
+        return $this->hasOne('\App\Profile', 'user_nim', 'nim');
+    }
+
+    public function achievement(){
+        return $this->belongsToMany('\App\Achievement');
     }
 
     /**

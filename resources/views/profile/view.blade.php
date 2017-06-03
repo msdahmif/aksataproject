@@ -111,7 +111,7 @@
 
             <!-- /Google Maps Modal -->
 
-			@if (($profile->nim_tpb !== null) && ($profile->golongan_darah !== null) && ($profile->penyakit !== null) && ($profile->mbti !== null) && ($profile->media_sosial !== null))
+			@if (($profile->nim_tpb !== null) && ($profile->media_sosial !== null))
             <legend>
                 Additional Information
             </legend>
@@ -119,15 +119,6 @@
 
             {{--NIM TPB--}}
             @include('profile.item.view.single', ['label' => 'NIM TPB', 'value' => $profile->nim_tpb])
-
-            {{--Golongan Darah--}}
-            @include('profile.item.view.single', ['label' => 'Golongan Darah', 'value' => $profile->golongan_darah, 'icon' => '<i class="fa fa-tint"></i>'])
-
-            {{--Penyakit--}}
-            @include('profile.item.view.single', ['label' => 'Penyakit', 'value' => $profile->penyakit, 'icon' => '<i class="fa fa-medkit"></i>'])
-
-            <!-- MBTI -->
-            @include('profile.item.view.single', ['label' => 'MBTI', 'value' => $profile->mbti, 'icon' => '<i class="fa fa-star"></i>'])
 
             {{--Media Sosial--}}
             @include('profile.item.view.multiple', ['label' => 'Media Sosial', 'values' => $profile->media_sosial, 'icon' => '<i class="fa fa-facebook-official"></i>'])
