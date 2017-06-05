@@ -40,24 +40,9 @@ class UserTableSeeder extends Seeder {
         foreach ($dataang as $data)
         {
             User::create(
-                ['nim' => $data->nim, 'password' => bcrypt('password'),
-                 'role' => (in_array ($data->nim, $admin)) ? 'admin' : 'user',
-                 'email' => $data->nim . '@std.stei.itb.ac.id']
-            );
-        }
-
-        if (false)
-        for ($i = 1; $i <= 100; $i++) {
-            $istring = (string)$i;
-            if ($i < 100) {
-                $istring = '0' . $istring;
-            }
-            if ($i < 10) {
-                $istring = '0' . $istring;
-            }
-            $nim = '13512' . $istring;
-            User::create(
-                ['nim' => $nim, 'password' => bcrypt('password'), 'role' => 'user']
+                ['nim' => $data->user_nim, 'password' => bcrypt('password'),
+                 'role' => (in_array ($data->user_nim, $admin)) ? 'admin' : 'user',
+                 'email' => $data->user_nim . '@std.stei.itb.ac.id']
             );
         }
     }
