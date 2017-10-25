@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Achievement;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AchievementController extends Controller
 {
@@ -17,7 +17,11 @@ class AchievementController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($nim = Auth::user()->nim){
+    public function index($nim = null){
+        if ($nim == null){
+            $nim = Auth::user()->nim;
+        }
+
         $achievements = Achievement::where('user_nim', $nim)->get();
 
         return view('achievement.index', compact('achievements'));

@@ -1,10 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Profile;
 use Carbon\Carbon;
-use Request;
+use Illuminate\Http\Request;
 use stdClass;
 
 class SearchController extends Controller {
@@ -14,9 +12,9 @@ class SearchController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-        $q = Request::input('q', '');
+        $q = $request->input('q', '');
         $result = $this->search($q);
 
 		return view('search', ['q' => $q, 'result' => $result]);
@@ -25,9 +23,8 @@ class SearchController extends Controller {
     /**
      * Filter $profiles according to the search query $q
      *
-     * @param $profiles
-     * @param $q
      * @return mixed
+     * @internal param $q
      */
     private function search($_q)
     {
@@ -43,40 +40,31 @@ class SearchController extends Controller {
         // change to query scope
         $profiles = Profile::get();
         $result = [];
-        foreach ($profiles as $profile)
-        {
+        foreach ($profiles as $profile) {
             //filter each profile according to the current user
             $profile->filter();
 
             $exist = array_pad([], count($q), false);
             $count = 0;
 
-            foreach (array_merge(Profile::$singleValued, Profile::$multiValued) as $key)
-            {
+            foreach (array_merge(Profile::$singleValued, Profile::$multiValued) as $key) {
                 if (!$profile->$key) continue;
 
                 $value = $profile->$key;
                 // handle for date
-                if ($value instanceof Carbon)
-                {
+                if ($value instanceof Carbon) {
                     $value = $value->formatLocalized('%e %B %Y');
-                }
-                // handle for object (composite)
-                else if ($value instanceof stdClass)
-                {
+                } // handle for object (composite)
+                else if ($value instanceof stdClass) {
                     $serialized = '';
-                    foreach ($value as $innerValue)
-                    {
+                    foreach ($value as $innerValue) {
                         $serialized .= $innerValue . '|';
                     }
                     $value = $serialized;
-                }
-                // handle for multi-valued
-                else if (is_array($value))
-                {
+                } // handle for multi-valued
+                else if (is_array($value)) {
                     $serialized = '';
-                    foreach ($value as $innerValue)
-                    {
+                    foreach ($value as $innerValue) {
                         if (!$innerValue) continue;
                         $serialized .= $innerValue->value . '|';
                     }
@@ -85,10 +73,8 @@ class SearchController extends Controller {
 
                 // find occurrence of each string
                 $value = strtolower($value);
-                for ($i = 0; $i < count($q); $i++)
-                {
-                    if (strpos($value, $q[$i]) !== false && !$exist[$i])
-                    {
+                for ($i = 0; $i < count($q); $i++) {
+                    if (strpos($value, $q[$i]) !== false && !$exist[$i]) {
                         $exist[$i] = true;
                         $count++;
                         if ($count == count($q)) break;
@@ -98,63 +84,11 @@ class SearchController extends Controller {
                 if ($count == count($q)) break;
             }
 
-            if ($count == count($q))
-            {
+            if ($count == count($q)) {
                 array_push($result, $profile);
             }
         }
 
         return $result;
     }
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 }

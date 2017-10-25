@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Management;
 use App\Division;
-use App\Profile;
-use App\User;
-use Request;
-use Redirect;
-use Carbon;
-use Auth;
+use Carbon\Carbon;
+
 
 class ManagementController extends Controller {
 
@@ -213,7 +208,7 @@ class ManagementController extends Controller {
         $management->update($data);
         $management->save();
 
-        return Redirect('management');
+        return redirect('management');
     }
 
     /**

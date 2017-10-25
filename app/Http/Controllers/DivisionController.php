@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Management;
 use App\Division;
-use App\Profile;
-use App\User;
-use Request;
-use Redirect;
-use Carbon;
-use Auth;
+
 
 class DivisionController extends Controller {
     /**
@@ -91,7 +85,7 @@ class DivisionController extends Controller {
 
         $super->divisions()->saveMany($temp);
 
-        return Redirect('management');
+        return redirect('management');
     }
 
     /**
@@ -169,7 +163,7 @@ class DivisionController extends Controller {
         $division->update($data);
         $division->save();
 
-        return Redirect('management');
+        return redirect('management');
     }
 
     /**
@@ -181,7 +175,6 @@ class DivisionController extends Controller {
     public function destroy($id)
     {
         Division::destroy($id);
-        return Redirect('management');
+        return redirect('management');
     }
-
 }
