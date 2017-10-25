@@ -1,12 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Profile;
-use App\User;
-use Request;
-use Redirect;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use stdClass;
 
 class ProfileController extends Controller {
@@ -96,7 +94,7 @@ class ProfileController extends Controller {
      * @param  string $nim
      * @return Response
      */
-	public function update($nim = null)
+	public function update(Request $request, $nim = null)
 	{
         $oldnim = $nim;
 
@@ -125,13 +123,13 @@ class ProfileController extends Controller {
                 $labelKey = $key . '_label_' . $i;
                 $valueKey = $key . '_value_' . $i;
                 $hakLihatKey = 'hak_lihat_' . $key . '_' . $i;
-                if (!Request::has($labelKey) || !Request::has($valueKey)) break;
+                if (!$request->has($labelKey) || !$request->has($valueKey)) break;
 
                 array_push($temp, [
-                    'label' => Request::input($labelKey),
-                    'value' => Request::input($valueKey)
+                    'label' => $request->input($labelKey),
+                    'value' => $request->input($valueKey)
                 ]);
-                array_push($data['hak_lihat']->$key, Request::input($hakLihatKey, 'private'));
+                array_push($data['hak_lihat']->$key, $request->input($hakLihatKey, 'private'));
             }
             $data[$key] = json_encode($temp);
         }
@@ -141,7 +139,7 @@ class ProfileController extends Controller {
             // composite
             if (in_array($key, Profile::$composite)) {
                 $temp = [];
-                foreach (Request::all() as $requestKey => $requestValue) {
+                foreach ($request->all() as $requestKey => $requestValue) {
                     if (substr($requestKey, 0, strlen($key)) == $key) {
                         $attrKey = substr($requestKey, strlen($key) + 1, strlen($requestKey));
                         $temp[$attrKey] = $requestValue;
@@ -152,12 +150,12 @@ class ProfileController extends Controller {
 
             // non-composite
             else {
-                if (Request::has($key)) {
-                    $data[$key] = Request::input($key);
+                if ($request->has($key)) {
+                    $data[$key] = $request->input($key);
                 }
             }
             $hakLihatKey = 'hak_lihat_' . $key;
-            $data['hak_lihat']->$key = Request::input($hakLihatKey, 'private');
+            $data['hak_lihat']->$key = $request->input($hakLihatKey, 'private');
         }
 
         // json_encode hak_lihat
@@ -167,11 +165,11 @@ class ProfileController extends Controller {
         $data['tanggal_lahir'] = Carbon::createFromFormat('m/d/Y', $data['tanggal_lahir']);
 
         // upload file
-        if (Request::hasFile('foto'))
+        if ($request->hasFile('foto'))
         {
-            $ext = '.' . Request::file('foto')->getClientOriginalExtension();
+            $ext = '.' . $request->file('foto')->getClientOriginalExtension();
             $data['foto_url'] = 'foto/' . $nim . $ext;
-            Request::file('foto')->move(public_path() . '/foto', $nim . $ext);
+            $request->file('foto')->move(public_path() . '/foto', $nim . $ext);
         }
 
         // update the profile
@@ -179,7 +177,7 @@ class ProfileController extends Controller {
         $profile->update($data);
         $profile->save();
 
-        return Redirect('profile' . ($oldnim == null ? '' : '/' . $nim));
+        return redirect('profile' . ($oldnim == null ? '' : '/' . $nim));
     }
 
     public function confirm($nim = null)
@@ -200,16 +198,6 @@ class ProfileController extends Controller {
         $profile->save();
 
         // redirect to the last page
-        return Redirect::back();
+        return back();
     }
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  string   $nim
-	 * @return Response
-	 */
-	public function destroy($nim){
-		//
-	}
 }

@@ -60,8 +60,3 @@ Route::get('achievement/nim/{nim}', 'AchievementController@index');
 Route::get('achievement/{achievement}/edit', 'AchievementController@edit');
 Route::post('achievement/{achievement}/edit', 'AchievementController@update');
 // Still not implement delete achievement
-
-/////////////////////////// ADMIN PAGE ///////////////////////////
-// MSDA Controller
-Route::get('change-request', 'ChangeRequestController@index')->middleware('msda');
-Route::get('change-request/{changerequest}', 'ChangeRequestController@show')->middleware('msda');
